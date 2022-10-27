@@ -1,0 +1,89 @@
+/* Blue background */
+body
+{
+    background-color: #1e3aa4;
+    margin: 40px;
+}
+
+/* Static background */
+#vhs_overlay
+{
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1;
+}
+
+/* VHS Font */
+@font-face
+{
+    font-family: 'Vhs';
+    src: url(../resources/Vhs.ttf);
+}
+
+p
+{
+    font-size: 48px;
+    font-family: 'Vhs';
+    color: white;
+    text-shadow: 4px 4px black;
+}
+
+#control
+{
+    position: fixed;
+    top: 40px;
+    left: 40px;
+}
+#record
+{
+    position: fixed;
+    top: 100px;
+    left: 40px;
+}
+#currentTime
+{
+    position: fixed;
+    top: 45px;
+    right: 40px;
+}
+#time
+{
+    position: fixed;
+    bottom: 80px;
+    left: 40px;
+}
+#currentDate
+{
+    position: fixed;
+    bottom: 40px;
+}
+#temp
+{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
+#centerVideo
+{
+    position: relative;
+}
+#mainVideo
+{
+    z-index: 0;
+}
+/*
+#mainVideo
+{
+    position: absolute;
+    top: 0%;
+    left: 25%;
+    bottom: 25%;
+    right: 25%;
+    width: 50%;
+    min-width: 25%;
+    height: 50%;
+    min-height: 25%;
+}

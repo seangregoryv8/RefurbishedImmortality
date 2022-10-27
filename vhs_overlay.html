@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheet/main.css">
+    <link rel="stylesheet" href="./stylesheet/overlay.css">
+</head>
+<body>
+    <div id="centerVideo">
+        <video id="mainVideo">
+            <source src="./resources/video0.mov" type="video/mp4">
+        </video>
+    </div>
+    <div id='vhs_overlay_div'>
+        <img id="vhs_overlay">
+    </div>
+
+    <p id="control"></p>
+    <p id="record" style="visibility: hidden;">REC
+        <font color="red">⏺</font>
+    </p>
+
+    <p id="time"></p>
+    <p id="currentTime"></p>
+    <p id="currentDate"></p>
+
+    <p id="temp"></p>
+
+
+    <!--<div>
+        <img src="./resources/test.webp">
+    </div>-->
+    <script type="module" src="./src/main.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function()
+        //{
+        //    $('#body').show();
+        //    $('#msg').hide();
+        //});
+    </script>
+</body>
+</html>
+
