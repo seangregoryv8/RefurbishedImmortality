@@ -1,4 +1,4 @@
-import { action, video } from "./globals.js";
+import { action } from "./globals.js";
 
 export default class KeyEventValues
 {

@@ -1,5 +1,5 @@
 import Controls from "./enums/Controls.js";
-import { currentTime, dateTime } from "./globals.js";
+import { changeControl, changeCurrentTime, currentTime, dateTime, VIDEO } from "./globals.js";
 
 export default class Interval
 {
@@ -26,22 +26,31 @@ export default class Interval
     // This manipulates the timer to either decrement or increment the timer, before displaying it in the correct element
     manipulate(ctl)
     {
-        if (ctl == Controls.Rewind)
+        if (!VIDEO)
         {
-            // f will be "STOP" if there is no more time, thus forcing it to play again and start at 0. Prevents negative
-            let f = currentTime.decrement();
-            if (f != "STOP")
-                document.getElementById("currentTime").innerHTML = f;
-            else
+            if (ctl == Controls.Rewind)
             {
-                ctl = Controls.Play;
-                document.getElementById("currentTime").innerHTML = currentTime.getTime();
-                document.getElementById("control").innerHTML = Controls.Stop;
+                // f will be "STOP" if there is no more time, thus forcing it to play again and start at 0. Prevents negative
+                let f = currentTime.decrement();
+                if (f != "STOP")
+                    changeCurrentTime(f);
+                else
+                {
+                    ctl = Controls.Play;
+                    changeCurrentTime(currentTime.getTime());
+                    changeControl(Controls.Stop);
+                }
             }
+            else if (ctl != Controls.Pause && ctl != Controls.Stop)
+                changeCurrentTime(currentTime.increment());
         }
-        else if (ctl != Controls.Pause && ctl != Controls.Stop)
-            document.getElementById("currentTime").innerHTML = currentTime.increment();
     }
+
+    /*changeTime()
+    {
+        currentTime.changeTime(video.getTime());
+        changeCurrentTime(currentTime.getTime());
+    }*/
     setTime()
     {
         setInterval(function() 

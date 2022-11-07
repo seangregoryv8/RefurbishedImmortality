@@ -1,21 +1,29 @@
+import { currentTime, damage } from "./globals.js";
+
 export default class Video
 {
     constructor()
     {
         this.video = document.getElementById("mainVideo");
-
-        setInterval(() => 
-        {
-            this.setSpeed(this.video.playbackRate);
-            this.setTime(this.video.currentTime);
-        }, 10);
     }
 
     getSpeed() { return this.video.playbackRate; }
     setSpeed(speed) { this.video.playbackRate = speed; }
 
-    getTime() { return parseFloat(this.video.currentTime).toFixed(0); }
-    setTime(time) { this.video.currentTime = time; }
+    getTime()
+    {
+        return Math.floor(parseFloat(this.video.currentTime));
+    }
+    setTime(time)
+    {
+        this.video.currentTime = time;
+    }
+
+    getMilliTime()
+    {
+        let time = this.video.currentTime;
+        return parseFloat(time %= 1).toFixed(3);
+    }
 
     reset()
     {
@@ -26,18 +34,25 @@ export default class Video
 
     playPause()
     {
-        if (this.video.paused || this.video.playbackRate != 1)
+        console.log("ACTIVE: " + damage.activeEffect)
+        if (!damage.activeEffect)
         {
-            this.video.play();
-            console.log(this.video.playbackRate)
-            this.video.playbackRate = 1.0;
-        }
-        else
-        {
-            console.log("HI")
-            this.video.pause();
+            // Step 2: Save the video time when you pause
+            if (this.video.paused || this.video.playbackRate != 1)
+            {
+                this.video.play();
+                this.video.playbackRate = 1.0;
+                currentTime.setTimeInterval();
+            }
+            else
+            {
+                this.video.pause();
+                currentTime.updatePaused();
+            }
         }
     }
+
+    isPaused() { return this.video.paused; }
 
     fastForward()
     {
@@ -47,4 +62,30 @@ export default class Video
     {
         this.video.playbackRate = -1.5
     }
+
+    manageTimer()
+    {
+        let time = this.getTime();
+        this.lastTime = time;
+    }
 }
+
+/*var video = new Video();
+
+document.addEventListener('keydown', event => 
+{
+    switch (event.key)
+    {
+        case "ArrowRight":
+            video.rewind();
+            break;
+        case "ArrowLeft":
+            video.fastForward();
+            break;
+        case " ":
+            video.playPause();
+    }
+});*/
+
+// horizontalOffset = event.pageX - 1200;
+// verticalOffset = event.pageY - 600;

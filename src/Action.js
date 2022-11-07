@@ -1,6 +1,6 @@
 import Controls from "./enums/Controls.js";
 import Speed from "./enums/Speed.js";
-import { action, currentTime, damage, interval } from "./globals.js";
+import { action, changeControl, currentTime, damage, interval, VIDEO, video } from "./globals.js";
 
 export default class Action
 {
@@ -9,80 +9,86 @@ export default class Action
         this.delete();
     }
 
-    get()
-    {
-        return this.symbol;
-    }
+    get() { return this.symbol; }
+    set(symbol) { this.symbol = symbol; }
+    see(symbol) { return this.symbol == symbol; }
 
     delete()
     {
         this.stopRecording();
-        if (this.symbol != null && this.symbol != Controls.Stop)
+        if (this.get() != null && !this.see(Controls.Stop))
         {
             damage.blackEffect();
         }
-        this.symbol = Controls.Stop;
+        this.set(Controls.Stop);
         currentTime.reset();
-        interval.clear();
+        if (!VIDEO) interval.clear();
         document.getElementById("currentTime").innerHTML = currentTime.getTime();
+        if (VIDEO) video.reset();
+        changeControl(this.symbol);
     }
 
     spacebar()
     {
         this.stopRecording();
-        switch (this.symbol)
+        switch (this.get())
         {
             case Controls.Rewind:
             case Controls.Forward:
             case Controls.Stop:
-                //damage.none();
-                this.symbol = Controls.Play;
-                interval.reset(Speed.Normal, this.symbol);
+                damage.none();
+                this.set(Controls.Play);
+                if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
                 break;
             case Controls.Play:
                 damage.light();
-                this.symbol = Controls.Pause;
-                interval.clear();
+                this.set(Controls.Pause);
+                if (!VIDEO) interval.clear();
                 break;
             case Controls.Pause:
                 damage.light();
-                this.symbol = Controls.Play;
-                interval.reset(Speed.Normal, this.symbol);
+                this.set(Controls.Play);
+                if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
                 break;
         }
+        if (VIDEO) video.playPause();
     }
 
     left()
     {
         this.stopRecording();
-        if (this.symbol != Controls.Forward)
+        if (!this.see(Controls.Forward))
         {
+            if (VIDEO) video.fastForward();
             damage.heavy();
-            this.symbol = Controls.Forward;
-            interval.reset(Speed.Faster, this.symbol);
+            this.set(Controls.Forward);
+            if (!VIDEO) interval.reset(Speed.Faster, this.symbol);
         }
         else
         {
+            if (VIDEO) video.playPause();
             damage.none();
-            this.symbol = Controls.Play;
-            interval.reset(Speed.Normal, this.symbol);
+            this.set(Controls.Play);
+            if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
         }
     }
 
     right()
     {
         this.stopRecording();
-        if (this.symbol != Controls.Rewind)
+        if (!this.see(Controls.Rewind))
         {
+            if (VIDEO) video.rewind();
             damage.heavy();
-            this.symbol = Controls.Rewind;
-            interval.reset(Speed.Fast, this.symbol);
+            this.set(Controls.Rewind);
+            if (!VIDEO) interval.reset(Speed.Fast, this.symbol);
         }
         else
         {
+            if (VIDEO) video.playPause();
             damage.none();
-            this.symbol = Controls.Play;
-            interval.reset(Speed.Normal, this.symbol);
+            this.set(Controls.Play);
+            if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
         }
     }
 
