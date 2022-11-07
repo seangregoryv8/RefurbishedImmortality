@@ -1,4 +1,4 @@
-import { currentTime, damage } from "./globals.js";
+import { currentTime } from "./globals.js";
 
 export default class Video
 {
@@ -34,21 +34,17 @@ export default class Video
 
     playPause()
     {
-        console.log("ACTIVE: " + damage.activeEffect)
-        if (!damage.activeEffect)
+        // Step 2: Save the video time when you pause
+        if (this.video.paused || this.video.playbackRate != 1)
         {
-            // Step 2: Save the video time when you pause
-            if (this.video.paused || this.video.playbackRate != 1)
-            {
-                this.video.play();
-                this.video.playbackRate = 1.0;
-                currentTime.setTimeInterval();
-            }
-            else
-            {
-                this.video.pause();
-                currentTime.updatePaused();
-            }
+            this.video.play();
+            this.video.playbackRate = 1.0;
+            currentTime.setTimeInterval();
+        }
+        else
+        {
+            this.video.pause();
+            currentTime.updatePaused();
         }
     }
 
@@ -69,23 +65,3 @@ export default class Video
         this.lastTime = time;
     }
 }
-
-/*var video = new Video();
-
-document.addEventListener('keydown', event => 
-{
-    switch (event.key)
-    {
-        case "ArrowRight":
-            video.rewind();
-            break;
-        case "ArrowLeft":
-            video.fastForward();
-            break;
-        case " ":
-            video.playPause();
-    }
-});*/
-
-// horizontalOffset = event.pageX - 1200;
-// verticalOffset = event.pageY - 600;

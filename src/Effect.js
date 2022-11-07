@@ -1,7 +1,7 @@
 import Controls from "./enums/Controls.js";
-import { BODY, DEBUG, video } from "./globals.js";
+import { BODY, DEBUG, getRandomNumber, video } from "./globals.js";
 
-export default class Damage
+export default class Effect
 {
     damage_light = "./resources/vhs_overlay_2.gif";
     damage_heavy = "./resources/vhs_overlay_1.gif";
@@ -11,6 +11,31 @@ export default class Damage
         this.activeEffect = false;
     }
 
+    /**
+     * 
+     * @param {Function} func 
+     */
+    rollTrue(func, max = 1)
+    {
+        if (getRandomNumber(max + 1) == max)
+            func();
+    }
+
+    rollStatic()
+    {
+        switch (Math.floor(Math.random() * 3))
+        {
+            case 0:
+                this.none();
+                break;
+            case 1:
+                this.light();
+                break;
+            case 2:
+                this.heavy();
+                break;
+        }
+    }
     roll(ctl = Controls.Play)
     {
         // Make a roller for different effects that could happen
@@ -43,17 +68,24 @@ export default class Damage
         }
     }
 
-    blackEffect()
+    blackEffectHeavy()
     {
         BODY.style.backgroundColor = 'black';
         video.video.style.visibility = 'hidden';
-        this.activeEffect = true;
         setTimeout(function()
         {
-            this.activeEffect = false;
-            console.log("HIT")
             BODY.style.backgroundColor = '#1e3aa4';
             video.video.style.visibility = 'visible';
         }, 2500);
+    }
+    blackEffectLight()
+    {
+        BODY.style.backgroundColor = 'black';
+        video.video.style.visibility = 'hidden';
+        setTimeout(function()
+        {
+            BODY.style.backgroundColor = '#1e3aa4';
+            video.video.style.visibility = 'visible';
+        }, 400);
     }
 }

@@ -1,6 +1,5 @@
 import Controls from "./enums/Controls.js";
-import Speed from "./enums/Speed.js";
-import { action, changeControl, currentTime, damage, interval, VIDEO, video } from "./globals.js";
+import { action, changeControl, currentTime, effect, video } from "./globals.js";
 
 export default class Action
 {
@@ -18,84 +17,63 @@ export default class Action
         this.stopRecording();
         if (this.get() != null && !this.see(Controls.Stop))
         {
-            damage.blackEffect();
+            effect.rollTrue(effect.blackEffectHeavy);
         }
         this.set(Controls.Stop);
         currentTime.reset();
-        if (!VIDEO) interval.clear();
         document.getElementById("currentTime").innerHTML = currentTime.getTime();
-        if (VIDEO) video.reset();
+        video.reset();
         changeControl(this.symbol);
     }
 
     spacebar()
     {
         this.stopRecording();
-        switch (this.get())
-        {
-            case Controls.Rewind:
-            case Controls.Forward:
-            case Controls.Stop:
-                damage.none();
-                this.set(Controls.Play);
-                if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
-                break;
-            case Controls.Play:
-                damage.light();
-                this.set(Controls.Pause);
-                if (!VIDEO) interval.clear();
-                break;
-            case Controls.Pause:
-                damage.light();
-                this.set(Controls.Play);
-                if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
-                break;
-        }
-        if (VIDEO) video.playPause();
+        effect.rollStatic();
+        effect.rollTrue(effect.blackEffectLight, 5);
+
+        this.set(this.see(Controls.Play) ? Controls.Pause : Controls.Play);
+        video.playPause();
     }
 
     left()
     {
         this.stopRecording();
+        effect.rollStatic();
+
         if (!this.see(Controls.Forward))
         {
-            if (VIDEO) video.fastForward();
-            damage.heavy();
+            video.fastForward();
             this.set(Controls.Forward);
-            if (!VIDEO) interval.reset(Speed.Faster, this.symbol);
         }
         else
         {
-            if (VIDEO) video.playPause();
-            damage.none();
+            video.playPause();
             this.set(Controls.Play);
-            if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
         }
     }
 
     right()
     {
         this.stopRecording();
+        effect.rollStatic();
+
         if (!this.see(Controls.Rewind))
         {
-            if (VIDEO) video.rewind();
-            damage.heavy();
+            video.rewind();
             this.set(Controls.Rewind);
-            if (!VIDEO) interval.reset(Speed.Fast, this.symbol);
         }
         else
         {
-            if (VIDEO) video.playPause();
-            damage.none();
+            video.playPause();
             this.set(Controls.Play);
-            if (!VIDEO) interval.reset(Speed.Normal, this.symbol);
         }
     }
 
     escape()
     {
         this.stopRecording();
-        this.symbol = (this.symbol == Controls.Eject) ? Controls.Play : Controls.Eject;
+        this.symbol = (this.see(Controls.Eject)) ? Controls.Play : Controls.Eject;
     }
 
     record()

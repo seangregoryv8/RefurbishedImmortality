@@ -1,5 +1,4 @@
 export const DEBUG = false;
-export const VIDEO = true;
 
 export const BODY = document.getElementsByTagName('body')[0];
 export function changeCurrentTime(time)
@@ -20,6 +19,8 @@ export function getVideoTitle()
     return third;
 }
 
+export function getRandomNumber(max = 2) { return Math.floor(Math.random() * max)}
+
 import Video from "./Video.js";
 export const video = new Video();
 
@@ -29,11 +30,8 @@ export const dateTime = new DateTime();
 import Timer from "../lib/Timer.js";
 export const currentTime = new Timer(parseFloat(video.video.duration).toFixed(2));
 
-import Damage from "./Damage.js";
-export const damage = new Damage();
-
-import Interval from "./Interval.js";
-export const interval = new Interval();
+import Effect from "./Effect.js";
+export const effect = new Effect();
 
 import Action from "./Action.js";
 export const action = new Action();
