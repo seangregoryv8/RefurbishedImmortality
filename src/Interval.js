@@ -26,6 +26,7 @@ export default class Interval
     // This manipulates the timer to either decrement or increment the timer, before displaying it in the correct element
     manipulate(ctl)
     {
+        console.log("HI")
         if (!VIDEO)
         {
             if (ctl == Controls.Rewind)

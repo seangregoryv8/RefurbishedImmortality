@@ -1,5 +1,6 @@
 export const DEBUG = false;
 export const VIDEO = true;
+
 export const BODY = document.getElementsByTagName('body')[0];
 export function changeCurrentTime(time)
 {
