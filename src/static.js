@@ -1,8 +1,7 @@
 /**
- * 
- * @param {string} hours 
- * @param {string} minutes 
- * @returns 
+ * @param {number} hours 
+ * @param {number} minutes 
+ * @returns hours:minutes AM/PM
  */
 export function formatTime(hours, minutes)
 {
@@ -19,6 +18,13 @@ export function formatTime(hours, minutes)
     let m = (minutes >= 10 ? minutes : "0" + minutes)
     return ` ${h}:${m} ${AMPM}`;
 }
+
+/**
+ * @param {number} hours 
+ * @param {number} minutes 
+ * @param {number} seconds 
+ * @returns hours:minutes:seconds
+ */
 export function formatStopwatch(hours, minutes, seconds)
 {
     let h = (hours >= 10 ? hours : "0" + hours)
@@ -27,6 +33,12 @@ export function formatStopwatch(hours, minutes, seconds)
     return ` ${h}:${m}:${s}`;
 }
 
+/**
+ * @param {number} year 
+ * @param {string} month 
+ * @param {number} day 
+ * @returns MONTH DAY YEAR
+ */
 export function formatDate(year, month, day)
 {
     let m = "JAN"

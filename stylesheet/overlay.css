@@ -66,16 +66,14 @@ p
     bottom: 40px;
     right: 40px;
 }
+#mainVideo
+{
+    max-width: 100%;
+}
 #centerVideo
 {
     text-align: center;
-    position: relative;
-    top: 50%;
-    transform: translateY(20%);
-}
-#mainVideo
-{
-    z-index: 2;
+    transform: translateY(15%);
 }
 /*
 #mainVideo

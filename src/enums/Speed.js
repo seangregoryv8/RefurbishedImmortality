@@ -1,8 +1,8 @@
 const Speed = 
 {
-    Normal: 1000,
-    Fast: 500,
-    Faster: 250
+    Normal: 1.0,
+    Fast: 1.75,
+    Reverse: -1.5
 }
 
 export default Speed;

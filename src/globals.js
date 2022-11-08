@@ -22,7 +22,7 @@ export function getVideoTitle()
 export function getRandomNumber(max = 2) { return Math.floor(Math.random() * max)}
 
 import Video from "./Video.js";
-export const video = new Video();
+export const video = new Video(document.getElementById("mainVideo"));
 
 import DateTime from "../lib/DateTime.js";
 export const dateTime = new DateTime();
