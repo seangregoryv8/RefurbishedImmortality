@@ -11,6 +11,11 @@ export function changeControl(ctl)
     document.getElementById("control").innerHTML = ctl;
 }
 
+export function visibleVideo(visible = true)
+{
+    document.getElementById("mainVideo").style.visibility = visible ? "visible" : "hidden";
+}
+
 export function getVideoTitle()
 {
     let first = video.video.firstElementChild.outerHTML;

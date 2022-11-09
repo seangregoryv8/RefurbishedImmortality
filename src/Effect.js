@@ -1,5 +1,5 @@
 import Controls from "./enums/Controls.js";
-import { BODY, DEBUG, getRandomNumber, video } from "./globals.js";
+import { action, BODY, DEBUG, getRandomNumber, video } from "./globals.js";
 
 export default class Effect
 {
@@ -80,12 +80,15 @@ export default class Effect
     }
     blackEffectLight()
     {
-        BODY.style.backgroundColor = 'black';
-        video.video.style.visibility = 'hidden';
-        setTimeout(function()
+        if (!action.stay)
         {
-            BODY.style.backgroundColor = '#1e3aa4';
-            video.video.style.visibility = 'visible';
-        }, getRandomNumber(400, 1000));
+            BODY.style.backgroundColor = 'black';
+            video.video.style.visibility = 'hidden';
+            setTimeout(function()
+            {
+                BODY.style.backgroundColor = '#1e3aa4';
+                video.video.style.visibility = 'visible';
+            }, getRandomNumber(400, 1000));
+        }
     }
 }

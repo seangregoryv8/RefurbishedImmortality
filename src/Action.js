@@ -1,33 +1,52 @@
 import Controls from "./enums/Controls.js";
-import { action, changeControl, currentTime, effect, video } from "./globals.js";
+import { action, changeControl, changeCurrentTime, currentTime, effect, video, visibleVideo } from "./globals.js";
 
 export default class Action
 {
     constructor()
     {
         this.delete();
+
+        this.stay = false;
     }
 
     get() { return this.symbol; }
-    set(symbol) { this.symbol = symbol; }
+    set(symbol) { if (!this.stay) this.symbol = symbol; }
     see(symbol) { return this.symbol == symbol; }
 
     delete()
     {
         this.stopRecording();
+        visibleVideo(false);
         if (this.get() != null && !this.see(Controls.Stop))
         {
             effect.rollTrue(effect.blackEffectHeavy);
         }
         this.set(Controls.Stop);
         currentTime.reset();
-        document.getElementById("currentTime").innerHTML = currentTime.getTime();
+        changeCurrentTime(currentTime.getTime());
         video.reset();
         changeControl(this.symbol);
     }
 
     spacebar()
     {
+        if (this.see(Controls.Stop))
+        {
+            this.set(Controls.Play);
+            this.stay = true;
+            setTimeout(() => 
+            {
+                this.play();
+                this.stay = false;
+            }, 2500);
+        }
+        else if (!this.stay) this.play();
+    }
+
+    play()
+    {
+        visibleVideo();
         this.stopRecording();
         effect.rollStatic();
         effect.rollTrue(effect.blackEffectLight, 5);
@@ -38,6 +57,7 @@ export default class Action
 
     left()
     {
+        visibleVideo();
         this.stopRecording();
         effect.rollStatic();
 
@@ -55,6 +75,7 @@ export default class Action
 
     right()
     {
+        visibleVideo();
         this.stopRecording();
         effect.rollStatic();
 
@@ -72,6 +93,7 @@ export default class Action
 
     escape()
     {
+        visibleVideo();
         this.stopRecording();
         this.symbol = (this.see(Controls.Eject)) ? Controls.Play : Controls.Eject;
     }

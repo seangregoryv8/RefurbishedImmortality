@@ -1,5 +1,5 @@
 import Speed from "./enums/Speed.js";
-import { currentTime } from "./globals.js";
+import { action, currentTime } from "./globals.js";
 
 /**
  * This controls everything related to the current video playing
@@ -68,17 +68,20 @@ export default class Video
      */
     playPause()
     {
-        // Step 2: Save the video time when you pause
-        if (this.video.paused || this.getSpeed() != Speed.Normal)
+        if (!action.stay)
         {
-            this.video.play();
-            this.setSpeed(Speed.Normal);
-            currentTime.setTimeInterval();
-        }
-        else
-        {
-            this.video.pause();
-            currentTime.updatePaused();
+            // Step 2: Save the video time when you pause
+            if (this.video.paused || this.getSpeed() != Speed.Normal)
+            {
+                this.video.play();
+                this.setSpeed(Speed.Normal);
+                currentTime.setTimeInterval();
+            }
+            else
+            {
+                this.video.pause();
+                currentTime.updatePaused();
+            }
         }
     }
 
@@ -89,6 +92,8 @@ export default class Video
     fastForward()
     {
         this.setSpeed(Speed.Fast);
+        this.video.play();
+        currentTime.setTimeInterval();
     }
 
     // This sets the new speed to a reverse rate (Doesn't work yet)
