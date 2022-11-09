@@ -37,8 +37,10 @@ export default class Action
             this.stay = true;
             setTimeout(() => 
             {
-                this.play();
                 this.stay = false;
+                visibleVideo();
+                this.stopRecording();
+                video.playPause();
             }, 2500);
         }
         else if (!this.stay) this.play();
