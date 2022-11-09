@@ -10,27 +10,31 @@
     <link rel="stylesheet" href="./stylesheet/glitch.css"/>
 </head>
 <body>
-    <div id="centerVideo">
-        <video id="mainVideo">
-            <!--<source src="resources/weirdAnime.webm" type="video/webm">-->
-            <source src="resources/Wh4t_Went_Wr0ng_.mp4" type="video/mp4">
-            <!-- Either WebM or OGG -->
-        </video>
-    </div>
     <div id='vhs_overlay_div'>
         <img id="vhs_overlay">
     </div>
+    <div id="leftbar"></div>
+    <div id="rightbar"></div>
 
-    <p id="control"></p>
-    <p id="record" style="visibility: hidden;">REC
-        <font color="red">⏺</font>
-    </p>
+    <div>
+        <p id="control"></p>
+        <p id="record" style="visibility: hidden;">REC
+            <font color="red">⏺</font>
+        </p>
 
-    <p id="time"></p>
-    <p id="currentTime"></p>
-    <p id="currentDate"></p>
+        <div id="centerVideo">
+            <video id="mainVideo">
+                <!--<source src="resources/weirdAnime.webm" type="video/webm">-->
+                <source src="resources/Wh4t_Went_Wr0ng_.mp4" type="video/mp4">
+                <!-- Either WebM or OGG -->
+            </video>
+        </div>
+    
+        <p id="time"></p>
+        <p id="currentTime"></p>
+        <p id="currentDate"></p>
+    </div>
 
-    <p id="temp"></p>
     <script type="module" src="./src/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function()
@@ -38,6 +42,10 @@
             $('#body').show();
             $('#msg').hide();
         });
+
+        var vid = document.getElementById("mainVideo");
+        vid.disablePictureInPicture = true;
     </script>
+
 </body>
 </html>

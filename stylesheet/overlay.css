@@ -1,19 +1,66 @@
-/* Blue background */
+#control
+{
+    position: fixed;
+    top: 5%;
+    left: 10%;
+}
+
+#record
+{
+    position: fixed;
+    top: 100px;
+    left: 10%;
+}
+#currentTime
+{
+    position: fixed;
+    top: 5%;
+    right: 10%;
+}
+#time
+{
+    position: fixed;
+    bottom: 12%;
+    left: 10%;
+}
+#currentDate
+{
+    position: fixed;
+    left: 10%;
+    bottom: 5%;
+}
+
 body
 {
     background-color: #1e3aa4;
-    margin: 40px;
 }
 
-/* Static background */
+#leftbar
+{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 9%;
+    height: 100%;
+}
+#rightbar
+{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 9%;
+    height: 100%;
+}
+
 #vhs_overlay
 {
     position: fixed;
-    right: 0;
+    left: 9%;
     top: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: 1;
+    max-width: 82%;
+    height: 100%;
 }
 
 /* VHS Font */
@@ -31,60 +78,28 @@ p
     text-shadow: 4px 4px black;
 }
 
-#control
-{
-    position: fixed;
-    top: 40px;
-    left: 40px;
-}
-#record
-{
-    position: fixed;
-    top: 100px;
-    left: 40px;
-}
-#currentTime
-{
-    position: fixed;
-    top: 45px;
-    right: 40px;
-}
-#time
-{
-    position: fixed;
-    bottom: 80px;
-    left: 40px;
-}
-#currentDate
-{
-    position: fixed;
-    bottom: 40px;
-}
-#temp
-{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-}
-#mainVideo
-{
-    max-width: 100%;
-}
 #centerVideo
 {
     text-align: center;
-    transform: translateY(15%);
 }
-/*
 #mainVideo
 {
     position: absolute;
-    top: 0%;
-    left: 25%;
-    bottom: 25%;
-    right: 25%;
-    width: 50%;
-    min-width: 25%;
-    height: 50%;
-    min-height: 25%;
+    inset: 0;
+    margin: auto;
+    height: 100%;
+    max-height: 100vh;
+    min-width: 50%;
+    max-width: 85%;
+    z-index: 0;
+}
+#leftbar, #rightbar, #control, #record, #currentDate, 
+#time, #currentTime
+{
+    z-index: 1;
+}
+
+#vhs_overlay
+{
+    z-index: 2;
 }

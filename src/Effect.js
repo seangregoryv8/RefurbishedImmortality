@@ -76,7 +76,7 @@ export default class Effect
         {
             BODY.style.backgroundColor = '#1e3aa4';
             video.video.style.visibility = 'visible';
-        }, 2500);
+        }, getRandomNumber(1200, 2500));
     }
     blackEffectLight()
     {
@@ -86,6 +86,6 @@ export default class Effect
         {
             BODY.style.backgroundColor = '#1e3aa4';
             video.video.style.visibility = 'visible';
-        }, 400);
+        }, getRandomNumber(400, 1000));
     }
 }

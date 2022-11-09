@@ -4,7 +4,8 @@ import
     effect,
     action,
     keys,
-    getVideoTitle
+    getVideoTitle,
+    getRandomNumber
 } from "./globals.js"
 
 effect.rollStatic();
@@ -31,7 +32,5 @@ setInterval(function()
 }, 1000);
 
 document.title = getVideoTitle();
-
-//document.title = video.video
 
 // Email: computation.lab@concordia.ca

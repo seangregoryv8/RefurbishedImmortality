@@ -19,7 +19,7 @@ export function getVideoTitle()
     return third;
 }
 
-export function getRandomNumber(max = 2) { return Math.floor(Math.random() * max)}
+export function getRandomNumber(min = 0, max = 2) { return Math.floor(Math.random() * (max - min) + min); }
 
 import Video from "./Video.js";
 export const video = new Video(document.getElementById("mainVideo"));
