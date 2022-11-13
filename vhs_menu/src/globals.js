@@ -8,3 +8,5 @@ import Tapes from "./Tapes.js";
 
 let allTapes = document.getElementById("tapes").children;
 export const tapes = new Tapes(allTapes, Math.ceil(allTapes.length / 5).toFixed(0));
+
+export const MAIN = "../../tapes";

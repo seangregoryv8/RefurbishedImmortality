@@ -5,6 +5,7 @@ import
 } from "./globals.js";
 import LinkList from "./LinkList.js";
 import ListNode from "./ListNode.js";
+import TreeNode from "./TreeNode.js";
 
 effect.rollStatic();
 
@@ -51,6 +52,7 @@ fetch("../resources/config.json")
 })
 
 */
+/*
 let node = new LinkList();
 node.add("first")
 node.add("second")
@@ -60,4 +62,13 @@ node.remove("first");
 
 node.remove();
 
-console.log(node)
+node.setByElement("second", "fifth")
+
+node.setByIndex(2, "second")
+*/
+
+let tree = new TreeNode();
+console.log(tree);
+
+tree.add("file1")
+tree.add("file2")

@@ -7,6 +7,11 @@ export default class LinkList
         this.head = head;
     }
 
+    isEmpty()
+    {
+        return this.head == null;
+    }
+
     /**
      * 
      * @param {number} index 
@@ -17,6 +22,51 @@ export default class LinkList
     get(index, count = 0, node = this.head)
     {
         return (count != index - 1) ? this.get(index, count + 1, node.next) : node;
+    }
+
+    /**
+     * 
+     * @param {*} oldElem
+     * @param {*} newElem
+     * @param {ListNode} node 
+     * @returns 
+     */
+    setByElement(oldElem, newElem, node = this.getFirst())
+    {
+        if (node == null)
+            return;
+        
+        else if (node.element == oldElem)
+        {
+            node.element = newElem;
+        }
+        else
+        {
+            return this.setByElement(oldElem, newElem, node.next);
+        }
+    }
+    
+    /**
+     * 
+     * @param {number} index
+     * @param {*} newElem
+     * @param {ListNode} node 
+     * @param {number} count
+     * @returns 
+     */
+    setByIndex(index, newElem, node = this.getFirst(), count = 0)
+    {
+        if (node == null)
+            return;
+        
+        else if (index == count)
+        {
+            node.element = newElem;
+        }
+        else
+        {
+           return this.setByIndex(index, newElem, node.next, count + 1);
+        }
     }
 
     getByElement(element, node = this.getFirst())
@@ -95,23 +145,14 @@ export default class LinkList
     remove(element = this.getLast().element)
     {
         // Step 1: Find the node
-        this.head = this.getByElement(element);
+            this.head = this.getByElement(element);
 
-        let node = this.head
-        // Step 2: Remove node from previous
-        if (this.head.prev)
-        {
-            this.head = new ListNode(node.prev.element, node.next, node.prev.prev)
-        }
-        else if (this.head.next)
-        {
-            console.log("HI")
-            // Step 3: Remove node from next
-            this.head = new ListNode(node.next.element, node.next.next, node.prev)
-        }
-        else
-        {
-            this.clear();
-        }
+        if (this.head.next != null)
+            this.head.next.prev = this.head.prev;
+
+        if (this.head.prev != null)
+            this.head.prev.next = this.head.next;
+            
+        this.head = this.getFirst();
     }
 }
