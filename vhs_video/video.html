@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video</title>
-    <link rel="stylesheet" href="./stylesheet/main.css">
+    <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="./stylesheet/overlay.css">
     <link rel="stylesheet" href="./stylesheet/glitch.css"/>
 </head>
@@ -23,9 +23,9 @@
         </p>
 
         <div id="centerVideo">
-            <video id="mainVideo">
+            <video id="mainVideo" style="visibility: hidden;">
                 <!--<source src="resources/weirdAnime.webm" type="video/webm">-->
-                <source src="resources/Wh4t_Went_Wr0ng_.mp4" type="video/mp4">
+                <source src="../tapes/file2/Wh4t_Went_Wr0ng_.mp4" type="video/mp4">
                 <!-- Either WebM or OGG -->
             </video>
         </div>
@@ -37,12 +37,6 @@
 
     <script type="module" src="./src/main.js"></script>
     <script type="text/javascript">
-        $(document).ready(function()
-        {
-            $('#body').show();
-            $('#msg').hide();
-        });
-
         var vid = document.getElementById("mainVideo");
         vid.disablePictureInPicture = true;
     </script>

@@ -30,54 +30,6 @@
     bottom: 5%;
 }
 
-body
-{
-    background-color: #1e3aa4;
-}
-
-#leftbar
-{
-    background-color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 9%;
-    height: 100%;
-}
-#rightbar
-{
-    background-color: black;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 9%;
-    height: 100%;
-}
-
-#vhs_overlay
-{
-    position: fixed;
-    left: 9%;
-    top: 0;
-    max-width: 82%;
-    height: 100%;
-}
-
-/* VHS Font */
-@font-face
-{
-    font-family: 'Vhs';
-    src: url(../resources/Vhs.ttf);
-}
-
-p
-{
-    font-size: 48px;
-    font-family: 'Vhs';
-    color: white;
-    text-shadow: 4px 4px black;
-}
-
 #centerVideo
 {
     text-align: center;

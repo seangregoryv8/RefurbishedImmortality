@@ -20,8 +20,10 @@ export function getVideoTitle()
 {
     let first = video.video.firstElementChild.outerHTML;
     let second = first.substring(first.indexOf("src="), first.indexOf("type="))
-    let third = second.substring(second.lastIndexOf("/") + 1, second.indexOf("."));
-    return third;
+    let third = second.slice(second.indexOf('"') + 1, second.lastIndexOf('"'));
+    let fourth = third.slice(third.lastIndexOf("/") + 1, third.length);
+    let fifth = fourth.slice(0, fourth.lastIndexOf("."))
+    return fifth;
 }
 
 export function getRandomNumber(min = 0, max = 2) { return Math.floor(Math.random() * (max - min) + min); }
@@ -35,7 +37,7 @@ export const dateTime = new DateTime();
 import Timer from "../lib/Timer.js";
 export const currentTime = new Timer(parseFloat(video.video.duration).toFixed(2));
 
-import Effect from "./Effect.js";
+import Effect from "../lib/Effect.js";
 export const effect = new Effect();
 
 import Action from "./Action.js";

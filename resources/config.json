@@ -1,9 +1,19 @@
 {
-    "fonts":
+    "folders":
+    {
+        "type": "dir",
+        "name": "tapes",
+        "children": 
+        [
+            
+        ]
+    }
+    "tapes":
     [
         {
-            "name": "Vhs",
-            "path": "./Vhs.ttf"
+            "name": "Wh4t_Went_Wr0ng_",
+            "dir": "Wh4t_Went_Wr0ng_.mp4",
+            "stage": 1
         }
     ]
 }

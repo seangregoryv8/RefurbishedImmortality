@@ -1,10 +1,10 @@
-import Controls from "./enums/Controls.js";
-import { action, BODY, DEBUG, getRandomNumber, video } from "./globals.js";
+import Controls from "../src/enums/Controls.js";
+import { action, BODY, DEBUG, getRandomNumber, video } from "../src/globals.js";
 
 export default class Effect
 {
-    damage_light = "./resources/vhs_overlay_2.gif";
-    damage_heavy = "./resources/vhs_overlay_1.gif";
+    damage_light = "../vhs_overlays/2.gif";
+    damage_heavy = "../vhs_overlays/1.gif";
 
     constructor()
     {
@@ -78,6 +78,7 @@ export default class Effect
             video.video.style.visibility = 'visible';
         }, getRandomNumber(1200, 2500));
     }
+    
     blackEffectLight()
     {
         if (!action.stay)
