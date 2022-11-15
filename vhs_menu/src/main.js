@@ -14,7 +14,7 @@ for (let i = 0; i < tapes.getTapeLength(); i++)
     let id = tapes.allTapes[i].id;
     let a = tapes.allTapes[i].getElementsByTagName("a")[0]
 
-    a.href = "../../vhs_video/video.html";
+    a.href = "../vhs_video/video.html";
 
     //tapes.allTapes[i].href
     if (i % 2 == 0 && i != 0)

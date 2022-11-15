@@ -71,7 +71,7 @@ export default class Video
         if (!action.stay)
         {
             // Step 2: Save the video time when you pause
-            if (this.video.paused || this.getSpeed() != Speed.Normal)
+            if (this.video.paused || this.getSpeed() != Speed.Normal || !action.ejecting)
             {
                 this.video.play();
                 this.setSpeed(Speed.Normal);

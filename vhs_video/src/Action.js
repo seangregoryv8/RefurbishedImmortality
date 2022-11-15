@@ -8,6 +8,7 @@ export default class Action
         this.delete();
 
         this.stay = false;
+        this.ejecting = false;
     }
 
     get() { return this.symbol; }
@@ -16,88 +17,110 @@ export default class Action
 
     delete()
     {
-        this.stopRecording();
-        visibleVideo(false);
-        if (this.get() != null && !this.see(Controls.Stop))
+        if (!this.ejecting)
         {
-            effect.rollTrue(effect.blackEffectHeavy);
+            this.stopRecording();
+            visibleVideo(false);
+            if (this.get() != null && !this.see(Controls.Stop))
+            {
+                effect.rollTrue(effect.blackEffectHeavy);
+            }
+            this.set(Controls.Stop);
+            currentTime.reset();
+            changeCurrentTime(currentTime.getTime());
+            video.reset();
+            changeControl(this.symbol);
         }
-        this.set(Controls.Stop);
-        currentTime.reset();
-        changeCurrentTime(currentTime.getTime());
-        video.reset();
-        changeControl(this.symbol);
     }
 
     spacebar()
     {
-        if (this.see(Controls.Stop))
+        if (!this.ejecting)
         {
-            this.set(Controls.Play);
-            this.stay = true;
-            setTimeout(() => 
+            if (this.see(Controls.Stop))
             {
-                this.stay = false;
-                visibleVideo();
-                this.stopRecording();
-                video.playPause();
-            }, 2500);
+                this.set(Controls.Play);
+                this.stay = true;
+                setTimeout(() => 
+                {
+                    this.stay = false;
+                    visibleVideo();
+                    this.stopRecording();
+                    video.playPause();
+                }, 2500);
+            }
+            else if (!this.stay) this.play();
         }
-        else if (!this.stay) this.play();
     }
 
     play()
     {
-        visibleVideo();
-        this.stopRecording();
-        effect.rollStatic();
-        effect.rollTrue(effect.blackEffectLight, 5);
+        if (!this.ejecting)
+        {
+            visibleVideo();
+            this.stopRecording();
+            effect.rollStatic();
+            effect.rollTrue(effect.blackEffectLight, 5);
 
-        this.set(this.see(Controls.Play) ? Controls.Pause : Controls.Play);
-        video.playPause();
+            this.set(this.see(Controls.Play) ? Controls.Pause : Controls.Play);
+            video.playPause();
+        }
     }
 
     left()
     {
-        visibleVideo();
-        this.stopRecording();
-        effect.rollStatic();
-
-        if (!this.see(Controls.Forward))
+        if (!this.ejecting)
         {
-            video.fastForward();
-            this.set(Controls.Forward);
-        }
-        else
-        {
-            video.playPause();
-            this.set(Controls.Play);
+            visibleVideo();
+            this.stopRecording();
+            effect.rollStatic();
+    
+            if (!this.see(Controls.Forward))
+            {
+                video.fastForward();
+                this.set(Controls.Forward);
+            }
+            else
+            {
+                video.playPause();
+                this.set(Controls.Play);
+            }
         }
     }
 
     right()
     {
-        visibleVideo();
-        this.stopRecording();
-        effect.rollStatic();
-
-        if (!this.see(Controls.Rewind))
+        if (!this.ejecting)
         {
-            video.rewind();
-            this.set(Controls.Rewind);
-        }
-        else
-        {
-            video.playPause();
-            this.set(Controls.Play);
+            visibleVideo();
+            this.stopRecording();
+            effect.rollStatic();
+    
+            if (!this.see(Controls.Rewind))
+            {
+                video.rewind();
+                this.set(Controls.Rewind);
+            }
+            else
+            {
+                video.playPause();
+                this.set(Controls.Play);
+            }
         }
     }
 
     escape()
     {
-        visibleVideo();
+        this.ejecting = true;
+        document.getElementById("mainVideo").style.visibility = "hidden";
         this.stopRecording();
-        this.symbol = (this.see(Controls.Eject)) ? Controls.Play : Controls.Eject;
+        this.set(Controls.Eject);
+        video.playPause();
+
+        setTimeout(() => 
+        {
+            document.location.href = "../vhs_menu/menu.html"
+        }, 3500)
     }
 
     record()

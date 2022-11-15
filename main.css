@@ -42,7 +42,7 @@ body
 @font-face
 {
     font-family: 'Vhs';
-    src: url(../../resources/Vhs.ttf);
+    src: url(./resources/Vhs.ttf) format('truetype');
 }
 
 p, li, a
