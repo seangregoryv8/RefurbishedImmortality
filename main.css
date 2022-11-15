@@ -45,8 +45,9 @@ body
     src: url(../../resources/Vhs.ttf);
 }
 
-p, li
+p, li, a
 {
+    text-decoration: none;
     font-size: 48px;
     font-family: 'Vhs';
     color: white;

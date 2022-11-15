@@ -11,6 +11,12 @@ effect.rollStatic();
 
 for (let i = 0; i < tapes.getTapeLength(); i++)
 {
+    let id = tapes.allTapes[i].id;
+    let a = tapes.allTapes[i].getElementsByTagName("a")[0]
+
+    a.href = "../../vhs_video/video.html";
+
+    //tapes.allTapes[i].href
     if (i % 2 == 0 && i != 0)
     {
         tapes.adjustIndex();
@@ -33,6 +39,10 @@ document.addEventListener('keydown', event =>
             break;
         case "ArrowRight":
             tapes.right();
+            break;
+        case " ":
+        case "Enter":
+            document.location.href = tapes.allTapes[tapes.currentTape].getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.allTapes[tapes.currentTape].id
             break;
     }
 })
@@ -67,8 +77,8 @@ node.setByElement("second", "fifth")
 node.setByIndex(2, "second")
 */
 
-let tree = new TreeNode();
-console.log(tree);
+//let tree = new TreeNode();
+///console.log(tree);
 
-tree.add("file1")
-tree.add("file2")
+//tree.add("file1")
+//tree.add("file2")

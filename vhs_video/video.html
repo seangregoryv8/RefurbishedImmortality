@@ -25,7 +25,7 @@
         <div id="centerVideo">
             <video id="mainVideo" style="visibility: hidden;">
                 <!--<source src="resources/weirdAnime.webm" type="video/webm">-->
-                <source src="../tapes/file2/Wh4t_Went_Wr0ng_.mp4" type="video/mp4">
+                <source id="videoFormat" type="video/mp4">
                 <!-- Either WebM or OGG -->
             </video>
         </div>
@@ -37,9 +37,18 @@
 
     <script type="module" src="./src/main.js"></script>
     <script type="text/javascript">
-        var vid = document.getElementById("mainVideo");
-        vid.disablePictureInPicture = true;
-    </script>
+        var source = document.createElement('source');
+        var url = parent.document.URL;
+        var t = url.substring(url.indexOf('?'), url.length);
+        var r = t.substring(t.indexOf('=') + 1, t.length);
 
+        source.src = "../tapes/" + r;
+        source.type = "video/mp4";
+
+        document.getElementById("mainVideo").appendChild(source);
+
+        console.log(parent.location.hash)
+        parent.location.hash = "hello";
+    </script>
 </body>
 </html>
