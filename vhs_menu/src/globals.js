@@ -4,6 +4,8 @@ export const effect = new Effect();
 import Videos from "./Videos.js";
 export const videos = new Videos();
 
+export const TAPES = document.getElementById("tapes");
+export const TAPEINDEX = document.getElementById("tapeIndex");
 import Tapes from "./Tapes.js";
 
 addEventListener('load', function() 
@@ -18,37 +20,9 @@ addEventListener('load', function()
             tapesJSON[i] = body[i].replaceAll("\\", "/");
             tapesJSON[i] = tapesJSON[i].substring(8, tapesJSON[i].length);
         }
-        let ul = document.getElementById("tapes");
-
-        for (let i = 0; i < tapesJSON.length; i++)
-        {
-            let tape = tapesJSON[i]
-            let li = document.createElement('li');
-            li.id = tape;
-            let a = document.createElement('a');
-            a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf(".mp4"));
-            //console.log(a.innerHTML);
-            li.appendChild(a);
-            ul.appendChild(li);
-        }
         
         //console.log(tapes);
-        tapes = new Tapes();
-    
-        for (let i = 0; i < tapes.getTapeLength(); i++)
-        {
-            let id = tapes.all[i].id;
-            let a = tapes.all[i].getElementsByTagName("a")[0]
-    
-            a.href = "../vhs_video/video.html";
-    
-            //tapes.all[i].href
-            if (i % 2 == 0 && i != 0)
-            {
-                tapes.adjustIndex();
-                tapes.makeIndex();
-            }
-        }
+        tapes = new Tapes(tapesJSON);
     })
 });
 

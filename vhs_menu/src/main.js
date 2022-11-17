@@ -30,7 +30,7 @@ document.addEventListener('keydown', event =>
             break;
         case " ":
         case "Enter":
-            document.location.href = tapes.all[tapes.currentTape].getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.all[tapes.currentTape].id
+            document.location.href = tapes.getTape().getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.getTape().id;
             break;
     }
 })
