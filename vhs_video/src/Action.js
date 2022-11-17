@@ -1,5 +1,5 @@
 import Controls from "./enums/Controls.js";
-import { action, changeControl, changeCurrentTime, currentTime, effect, video, visibleVideo } from "./globals.js";
+import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, video, visibleVideo } from "./globals.js";
 
 export default class Action
 {
@@ -96,15 +96,22 @@ export default class Action
 
     volume(act)
     {
-        console.log(video.video.volume);
         switch (act)
         {
             case "ArrowUp":
-                    if (video.vol)
+                if (video.video.volume < 1.0)
+                {
+                    video.video.volume += 0.1;
+                }
                 break;
             case "ArrowDown":
+                if (video.video.volume > 0.0)
+                {
+                    video.video.volume -= 0.1;
+                }
                 break;
         }
+        changeVolume(video.video.volume);
     }
 
     escape()
@@ -112,6 +119,7 @@ export default class Action
         if (!this.stay)
         {
             this.untouchable = true;
+            document.getElementById("volume").style.visibility = "hidden";
             document.getElementById("mainVideo").style.visibility = "hidden";
             document.getElementById("currentTime").style.visibility = "hidden";
             document.getElementById("currentDate").style.visibility = "hidden";
@@ -122,15 +130,14 @@ export default class Action
     
             setTimeout(() => 
             {
-                //if (effect.rollTruePure(5))
-                //{
+                if (effect.rollTruePure(3))
+                {
                     effect.troubleEjecting();
-                //}
-                //else
-                //{
-                //    document.location.href = "../vhs_menu/menu.html"
-                //}
-                //document.location.href = "../vhs_menu/menu.html"
+                }
+                else
+                {
+                    document.location.href = "../vhs_menu/menu.html"
+                }
             }, 3500)
         }
     }

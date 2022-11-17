@@ -1,5 +1,5 @@
 import Controls from "../src/enums/Controls.js";
-import { action, BODY, DEBUG, getRandomNumber, video } from "../src/globals.js";
+import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
 
 export default class Effect
 {
@@ -95,11 +95,10 @@ export default class Effect
 
     troubleEjecting()
     {
-        document.getElementById("control").innerHTML = "Trouble Ejecting";
+        changeControl("Trouble Ejecting");
         setTimeout(function()
         {
-            console.log("HI")
-            let bg = document.getElementById('vhs_overlay_div')
+            let bg = document.getElementsByTagName('body')[0];
             let count = 20;
             for (let i = 0; i < count; i++)
             {

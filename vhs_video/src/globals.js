@@ -11,6 +11,19 @@ export function changeControl(ctl)
     document.getElementById("control").innerHTML = ctl;
 }
 
+export function changeVolume(amount)
+{
+    let vol = "";
+    amount -= 0.1;
+    
+    while (amount > 0)
+    {
+        amount -= 0.1;
+        vol += "|";
+    }
+    document.getElementById("volumeLevel").innerHTML = vol;
+}
+
 export function visibleVideo(visible = true)
 {
     document.getElementById("mainVideo").style.visibility = visible ? "visible" : "hidden";

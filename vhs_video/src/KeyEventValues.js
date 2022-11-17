@@ -2,7 +2,7 @@ import { action } from "./globals.js";
 
 export default class KeyEventValues
 {
-    IGNORE_TIME = 1000;
+    IGNORE_TIME = 150;
     lastClick = null;
     /**
      * 
@@ -27,9 +27,6 @@ export default class KeyEventValues
                 case "Tab":
                     this.no(event);
                     break;
-                case "Enter":
-                    this.no(event);
-                    break;
                 case "Shift":
                     this.no(event);
                     break;
@@ -46,6 +43,7 @@ export default class KeyEventValues
                     action.escape();
                     break;
                 case " ":
+                case "Enter":
                     action.spacebar();
                     break;
                 case "PageUp":

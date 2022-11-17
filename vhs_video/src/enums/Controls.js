@@ -1,8 +1,8 @@
 const Controls = 
 {
     Play: 'PLAY ▶',
-    Stop: 'STOP ⏹︎',
-    Pause: 'PAUSE ⏸',
+    Stop: 'STOP &#9209',
+    Pause: 'PAUSE ||',
     Forward: 'F.FWD ▶▶',
     Rewind: '◀◀ REW',
     Eject: 'EJECT ⏏',

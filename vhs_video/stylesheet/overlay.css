@@ -30,6 +30,24 @@
     bottom: 5%;
 }
 
+#volume
+{
+    position: fixed;
+    bottom: 8%;
+    right: 12%;
+}
+
+#volumeControl
+{
+    position: relative;
+    text-align: center;
+}
+#volumeLevel
+{
+    font-size: 24px;
+    position: relative;
+}
+
 #centerVideo
 {
     text-align: center;
