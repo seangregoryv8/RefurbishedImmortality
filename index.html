@@ -2,9 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=./vhs_menu/menu.html">
+    <link rel="stylesheet" href="./main.css">
+    <style>
+        p
+        {
+            font-size: 30px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        br
+        {
+            margin: 10px;
+        }
+        #vhs_overlay
+        {
+            background-image: url(./vhs_overlays/1.gif);
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="leftbar"></div>
+    <div id="rightbar"></div>
+    <p id="vhs_overlay">
+        For optimal immersive experience, please refrain from using the browser arrow keys or the refresh button...
+        <br>
+        Use keyboard arrows to navigate.  Instructions can be viewed on the bottom right...
+        <br>
+        This is a horror story. May contain some flashing lights and 
+        mature topics. Viewer discretion is advised...
+        <br>
+        Press spacebar or enter to continue...
+    </p>
+    <script type="text/javascript">
+        document.addEventListener('keydown', (event) => 
+        {
+            if (event.key == "Enter" || event.key == " ")
+            {
+                document.location.href = "./vhs_menu/menu.html";
+            }
+        })
+        
+        let bg = document.getElementsByTagName('body')[0];
+        let count = 20;
+        for (let i = 0; i < count; i++)
+        {
+            let glitchBox = document.createElement('div')
+            glitchBox.className = 'box';
+            bg.appendChild(glitchBox);
+        }
+        let glitch = document.getElementsByClassName('box');
+
+        let x = 0;
+        let glitchInterval = setInterval(set, 50)
+
+        let randomAmount = Math.floor(Math.random() * 30) + 10;
+        function set()
+        {
+            if (x == randomAmount)
+                clear();
+            for (let i = 0; i < glitch.length; i++)
+            {
+                glitch[i].style.left = Math.floor(Math.random() * 100) + 'vw';
+                glitch[i].style.top = Math.floor(Math.random() * 100) + 'vh';
+                glitch[i].style.width = Math.floor(Math.random() * 400) + 'px';
+                glitch[i].style.height = Math.floor(Math.random() * 100) + 'px';
+            }
+            x++;
+        }
+        function clear()
+        {
+            x = 0;
+            for (let i = 0; i < glitch.length; i++)
+            {
+                glitch[i].style.visibility = 'hidden';
+            }
+            clearInterval(glitchInterval)
+
+            let t = Math.floor((Math.random() * 8000) + 1000);
+            console.log(t);
+            setTimeout(function() 
+            {
+                randomAmount = Math.floor(Math.random() * 30) + 10;
+                for (let i = 0; i < glitch.length; i++)
+                {
+                    glitch[i].style.visibility = 'visible';
+                }
+                glitchInterval = setInterval(set, 50);
+            }, t);
+        }
+    </script>
 </body>
 </html>

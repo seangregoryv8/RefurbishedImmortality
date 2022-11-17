@@ -40,6 +40,10 @@
     <script type="text/javascript">
         var source = document.createElement('source');
         var url = parent.document.URL;
+        if (url.indexOf('?') == -1)
+        {
+            document.location.href = "../vhs_menu/menu.html"
+        }
         var t = url.substring(url.indexOf('?'), url.length);
         var r = t.substring(t.indexOf('=') + 1, t.length);
 
@@ -47,6 +51,18 @@
         source.type = "video/mp4";
 
         document.getElementById("mainVideo").appendChild(source);
+
+        const newURL = url.substring(0, url.indexOf('?'));
+        const nextTitle = 'icantbreatheicantbreatheicantbreatheicantbreathe';
+        const nextState = { additionalInformation: 'Updated' };
+        
+        window.history.replaceState(nextState, nextTitle, newURL);
+
+        addEventListener('beforeunload', (event) => 
+        {
+            document.location.href = url;
+            window.history.replaceState(nextState, nextTitle, url);
+        })
     </script>
 </body>
 </html>
