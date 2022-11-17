@@ -3,26 +3,14 @@ import
     effect,
     tapes
 } from "./globals.js";
-import LinkList from "./LinkList.js";
-import ListNode from "./ListNode.js";
-import TreeNode from "./TreeNode.js";
+
+// Get the ul
+// Run the php script
+// Get everything in the array it returns
+// Formulate it to make the li's for each iteration
+// Reformat so \ appears as /
 
 effect.rollStatic();
-
-for (let i = 0; i < tapes.getTapeLength(); i++)
-{
-    let id = tapes.allTapes[i].id;
-    let a = tapes.allTapes[i].getElementsByTagName("a")[0]
-
-    a.href = "../vhs_video/video.html";
-
-    //tapes.allTapes[i].href
-    if (i % 2 == 0 && i != 0)
-    {
-        tapes.adjustIndex();
-        tapes.makeIndex();
-    }
-}
 
 document.addEventListener('keydown', event => 
 {
@@ -42,7 +30,7 @@ document.addEventListener('keydown', event =>
             break;
         case " ":
         case "Enter":
-            document.location.href = tapes.allTapes[tapes.currentTape].getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.allTapes[tapes.currentTape].id
+            document.location.href = tapes.all[tapes.currentTape].getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.all[tapes.currentTape].id
             break;
     }
 })

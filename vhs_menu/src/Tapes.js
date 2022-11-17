@@ -1,8 +1,8 @@
 export default class Tapes
 {
-    constructor(tapes)
+    constructor()
     {
-        this.allTapes = tapes;
+        this.all = document.getElementById("tapes").children;
         this.currentTape = 0;
         this.index = document.getElementById("tapeIndex")
         this.indices = 1;
@@ -32,12 +32,12 @@ export default class Tapes
 
     getTapeLength()
     {
-        return this.allTapes.length;
+        return this.all.length;
     }
 
     getCurrentTape()
     {
-        return this.allTapes[this.currentTape];
+        return this.all[this.currentTape];
     }
 
     getCurrentIndex()
@@ -47,7 +47,7 @@ export default class Tapes
 
     down()
     {
-        if (this.currentTape == this.allTapes.length - 1)
+        if (this.currentTape == this.all.length - 1)
         {
             this.currentTape = 0;
         }
@@ -60,7 +60,7 @@ export default class Tapes
     {
         if (this.currentTape == 0)
         {
-            this.currentTape = this.allTapes.length - 1;
+            this.currentTape = this.all.length - 1;
         }
         else
             this.currentTape--;
@@ -89,11 +89,11 @@ export default class Tapes
 
     activate()
     {
-        for (let i = 0; i < this.allTapes.length; i++)
+        for (let i = 0; i < this.all.length; i++)
         {
-            this.allTapes[i].style.backgroundColor = "";
+            this.all[i].style.backgroundColor = "";
         }
-        this.allTapes[this.currentTape].style.backgroundColor = "black";
+        this.all[this.currentTape].style.backgroundColor = "black";
 
         for (let i = 0; i < this.index.children.length; i++)
         {
