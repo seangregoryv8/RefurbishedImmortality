@@ -27,5 +27,16 @@
         </ul>
     </div>
     <script type="module" src="./src/main.js"></script>
+
+    <script>
+        var allA = document.getElementsByTagName("a");
+        for (let i = 0; i < allA.length; i++)
+        {
+            allA[i].addEventListener('click', (event) => 
+            {
+                event.preventDefault();
+            }, false)
+        }
+    </script>
 </body>
 </html>

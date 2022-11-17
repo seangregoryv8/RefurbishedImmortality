@@ -71,7 +71,7 @@ export default class Video
         if (!action.stay)
         {
             // Step 2: Save the video time when you pause
-            if (this.video.paused || this.getSpeed() != Speed.Normal || !action.ejecting)
+            if (this.video.paused || this.getSpeed() != Speed.Normal)
             {
                 this.video.play();
                 this.setSpeed(Speed.Normal);
@@ -100,5 +100,13 @@ export default class Video
     rewind()
     {
         this.setSpeed(Speed.Reverse);
+    }
+
+    increaseVolume()
+    {
+        if (this.video.volume == 1.0)
+        {
+            
+        }
     }
 }

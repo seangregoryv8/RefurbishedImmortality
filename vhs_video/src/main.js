@@ -4,11 +4,11 @@ import
     effect,
     action,
     keys,
-    getVideoTitle,
-    getRandomNumber
+    getVideoTitle
 } from "./globals.js"
 
 effect.rollStatic();
+action.untouchable = false;
 
 // Make it so that pressing rewind on loading the page and pressing rewind again causes a major glitch to occur
 // Other idea: Use a captcha as per normal, then make every image this weird and creepy hybrid of a computer with "pick all the humans" or something, and end with a visual glitch jumpscare

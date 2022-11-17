@@ -8,12 +8,23 @@
     position: fixed;
     top: 20%;
     left: 15%;
+    width: 70%;
     list-style: none;
 }
 
 #tapes li
 {
     margin-bottom: 10px;
+}
+#tapes li a
+{
+    font-size: 36px;
+    margin-left: 10px;
+}
+
+#tapes li a:hover
+{
+    cursor: default;
 }
 
 #tapeIndex
@@ -32,4 +43,9 @@
     display: inline;
     margin-right: 15px;
     margin-left: 15px;
+}
+
+#tapeIndex li:hover
+{
+    cursor: default;
 }

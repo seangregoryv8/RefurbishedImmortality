@@ -23,11 +23,7 @@
         </p>
 
         <div id="centerVideo">
-            <video id="mainVideo" style="visibility: hidden;">
-                <!--<source src="resources/weirdAnime.webm" type="video/webm">-->
-                <source id="videoFormat" type="video/mp4">
-                <!-- Either WebM or OGG -->
-            </video>
+            <video id="mainVideo" style="visibility: hidden;"></video>
         </div>
     
         <p id="time"></p>
@@ -46,9 +42,6 @@
         source.type = "video/mp4";
 
         document.getElementById("mainVideo").appendChild(source);
-
-        console.log(parent.location.hash)
-        parent.location.hash = "hello";
     </script>
 </body>
 </html>

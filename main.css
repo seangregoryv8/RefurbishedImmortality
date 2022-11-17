@@ -8,6 +8,7 @@
 body
 {
     background-color: #1e3aa4;
+    overflow: hidden;
 }
 
 #leftbar
@@ -52,4 +53,10 @@ p, li, a
     font-family: 'Vhs';
     color: white;
     text-shadow: 4px 4px black;
+}
+
+.box
+{
+    position: absolute;
+    background: #000;
 }

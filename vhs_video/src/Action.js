@@ -8,7 +8,7 @@ export default class Action
         this.delete();
 
         this.stay = false;
-        this.ejecting = false;
+        this.untouchable = false;
     }
 
     get() { return this.symbol; }
@@ -17,110 +17,122 @@ export default class Action
 
     delete()
     {
-        if (!this.ejecting)
+        this.stopRecording();
+        visibleVideo(false);
+        if (this.get() != null && !this.see(Controls.Stop))
         {
-            this.stopRecording();
-            visibleVideo(false);
-            if (this.get() != null && !this.see(Controls.Stop))
-            {
-                effect.rollTrue(effect.blackEffectHeavy);
-            }
-            this.set(Controls.Stop);
-            currentTime.reset();
-            changeCurrentTime(currentTime.getTime());
-            video.reset();
-            changeControl(this.symbol);
+            effect.rollTrue(effect.blackEffectHeavy);
         }
+        this.set(Controls.Stop);
+        currentTime.reset();
+        changeCurrentTime(currentTime.getTime());
+        video.reset();
+        changeControl(this.symbol);
     }
 
     spacebar()
     {
-        if (!this.ejecting)
+        if (this.see(Controls.Stop))
         {
-            if (this.see(Controls.Stop))
+            this.set(Controls.Play);
+            this.stay = true;
+            setTimeout(() => 
             {
-                this.set(Controls.Play);
-                this.stay = true;
-                setTimeout(() => 
-                {
-                    this.stay = false;
-                    visibleVideo();
-                    this.stopRecording();
-                    video.playPause();
-                }, 2500);
-            }
-            else if (!this.stay) this.play();
+                this.stay = false;
+                visibleVideo();
+                this.stopRecording();
+                video.playPause();
+            }, 2500);
         }
+        else if (!this.stay) this.play();
     }
 
     play()
     {
-        if (!this.ejecting)
-        {
-            visibleVideo();
-            this.stopRecording();
-            effect.rollStatic();
-            effect.rollTrue(effect.blackEffectLight, 5);
+        visibleVideo();
+        this.stopRecording();
+        effect.rollStatic();
+        effect.rollTrue(effect.blackEffectLight, 5);
 
-            this.set(this.see(Controls.Play) ? Controls.Pause : Controls.Play);
-            video.playPause();
-        }
+        this.set(this.see(Controls.Play) ? Controls.Pause : Controls.Play);
+        video.playPause();
     }
 
     left()
     {
-        if (!this.ejecting)
+        visibleVideo();
+        this.stopRecording();
+        effect.rollStatic();
+
+        if (!this.see(Controls.Forward))
         {
-            visibleVideo();
-            this.stopRecording();
-            effect.rollStatic();
-    
-            if (!this.see(Controls.Forward))
-            {
-                video.fastForward();
-                this.set(Controls.Forward);
-            }
-            else
-            {
-                video.playPause();
-                this.set(Controls.Play);
-            }
+            video.fastForward();
+            this.set(Controls.Forward);
+        }
+        else
+        {
+            video.playPause();
+            this.set(Controls.Play);
         }
     }
 
     right()
     {
-        if (!this.ejecting)
+        visibleVideo();
+        this.stopRecording();
+        effect.rollStatic();
+
+        if (!this.see(Controls.Rewind))
         {
-            visibleVideo();
-            this.stopRecording();
-            effect.rollStatic();
-    
-            if (!this.see(Controls.Rewind))
-            {
-                video.rewind();
-                this.set(Controls.Rewind);
-            }
-            else
-            {
-                video.playPause();
-                this.set(Controls.Play);
-            }
+            video.rewind();
+            this.set(Controls.Rewind);
+        }
+        else
+        {
+            video.playPause();
+            this.set(Controls.Play);
+        }
+    }
+
+    volume(act)
+    {
+        console.log(video.video.volume);
+        switch (act)
+        {
+            case "ArrowUp":
+                    if (video.vol)
+                break;
+            case "ArrowDown":
+                break;
         }
     }
 
     escape()
     {
-        this.ejecting = true;
-        document.getElementById("mainVideo").style.visibility = "hidden";
-        this.stopRecording();
-        this.set(Controls.Eject);
-        video.playPause();
-
-        setTimeout(() => 
+        if (!this.stay)
         {
-            document.location.href = "../vhs_menu/menu.html"
-        }, 3500)
+            this.untouchable = true;
+            document.getElementById("mainVideo").style.visibility = "hidden";
+            document.getElementById("currentTime").style.visibility = "hidden";
+            document.getElementById("currentDate").style.visibility = "hidden";
+            document.getElementById("time").style.visibility = "hidden";
+            this.stopRecording();
+            this.set(Controls.Eject);
+            video.video.pause();
+    
+            setTimeout(() => 
+            {
+                //if (effect.rollTruePure(5))
+                //{
+                    effect.troubleEjecting();
+                //}
+                //else
+                //{
+                //    document.location.href = "../vhs_menu/menu.html"
+                //}
+                //document.location.href = "../vhs_menu/menu.html"
+            }, 3500)
+        }
     }
 
     record()
