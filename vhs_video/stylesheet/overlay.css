@@ -69,7 +69,17 @@
     z-index: 1;
 }
 
-#vhs_overlay
+#image_div
 {
-    z-index: 2;
+    text-align: center;
+}
+#image
+{
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    max-height: 100vh;
+    min-width: 50%;
+    max-width: 85%;
+    object-fit: cover;
 }

@@ -4,7 +4,8 @@ import
     effect,
     action,
     keys,
-    getVideoTitle
+    getVideoTitle,
+    changeControl
 } from "./globals.js"
 
 effect.rollStatic();
@@ -18,12 +19,12 @@ action.untouchable = false;
 
 document.getElementById("time").innerHTML = dateTime.getTime();
 document.getElementById("currentDate").innerHTML = dateTime.getDate();
-document.getElementById("control").innerHTML = action.symbol;
+changeControl(action.symbol);
 
 document.addEventListener('keydown', event => 
 {
     keys.allValues(event);
-    document.getElementById("control").innerHTML = action.symbol;
+    changeControl(action.symbol);
 });
 
 setInterval(function() 

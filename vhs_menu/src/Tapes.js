@@ -8,11 +8,18 @@ export default class Tapes
 
         for (let i = 0; i < json.length; i++)
         {
-            let tape = json[i]
+            let tape = json[i];
             let li = document.createElement('li');
             li.id = tape;
+            li.draggable = false;
             let a = document.createElement('a');
-            a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf(".mp4"));
+            a.draggable = false;
+            if (tape.includes("finale"))
+            {
+                a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf("."));
+            }
+            else
+                a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf(".mp4"));
             //console.log(a.innerHTML);
             li.appendChild(a);
             ul.appendChild(li);
@@ -20,11 +27,6 @@ export default class Tapes
     }
     constructor(json)
     {
-        // Idea:
-        // Make all into an array where I cycle through all the elements and put them into arrays depending 
-        // on the max (probably 5).
-        // Then, I simply replace erase everything in ul and replace it with whatever array the index is pointing 
-        // to so I can be able to properly have a tape index.
         this.formList(json)
         this.maxTapesPerPage = 5;
         this.currentTape = 0;

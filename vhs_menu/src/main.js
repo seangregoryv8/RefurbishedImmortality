@@ -32,6 +32,17 @@ document.addEventListener('keydown', event =>
         case "Enter":
             document.location.href = tapes.getTape().getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.getTape().id;
             break;
+        case "Backspace":
+            document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
+            document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
+            
+            document.getElementById("topbar").style.top = 0;
+            document.getElementById("bottombar").style.bottom = 0;
+            document.addEventListener("animationend", function() 
+            {
+                document.location.href = "../vhs/tv.html";
+            })
+            break;
     }
 })
 /*

@@ -60,3 +60,40 @@ p, li, a
     position: absolute;
     background: #000;
 }
+
+#instructions_img
+{
+    position: absolute;
+    bottom: 0px;
+    right: 0%;
+    z-index: 1;
+    height: 170%;
+}
+
+@keyframes takeOut
+{
+    from
+    {
+        bottom: -900px;
+        right: -20%;
+    }
+    to
+    {
+        bottom: 0px;
+        right: 0%;
+    }
+}
+
+@keyframes putAway
+{
+    from
+    {
+        bottom: 0px;
+        right: 0%;
+    }
+    to
+    {
+        bottom: -900px;
+        right: -15%;
+    }
+}

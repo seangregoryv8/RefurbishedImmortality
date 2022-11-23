@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="./stylesheet/glitch.css"/>
 </head>
 <body>
+    <div id="image_div">
+        <img id="image" draggable=false>
+    </div>
     <div id='vhs_overlay_div'>
-        <img id="vhs_overlay">
+        <img id="vhs_overlay" draggable=false>
     </div>
     <div id="leftbar"></div>
     <div id="rightbar"></div>
@@ -35,6 +38,8 @@
             <p id="volumeLevel">||||||||||</p>
         </div>
     </div>
+    <img id="instructions_img" src="../resources/instructions-2.png">
+    <script type="module" src="../all.js"></script>
 
     <script type="module" src="./src/main.js"></script>
     <script type="text/javascript">
@@ -47,10 +52,43 @@
         var t = url.substring(url.indexOf('?'), url.length);
         var r = t.substring(t.indexOf('=') + 1, t.length);
 
-        source.src = "../tapes/" + r;
-        source.type = "video/mp4";
+        var s = "../tapes/" + r;
+        if (r.includes("finale"))
+        {
+            document.getElementById("image").style.visibility = 'visible';
+            document.getElementById("image").src = s;
+            document.getElementsByTagName("body")[0].style.backgroundColor = "black";
+            document.getElementById("time").style.visibility = 'hidden';
+            document.getElementById("currentTime").style.visibility = 'hidden';
+            document.getElementById("currentDate").style.visibility = 'hidden';
+            document.getElementById("volume").style.visibility = 'hidden';
+            
+            s = s.substring(s.indexOf("finale/") + 7, s.length)
+            s = s.substring(0, s.indexOf("."));
+            switch (s)
+            {
+                case "eyes":
+                    document.getElementById("control").innerHTML = "I see everything";
+                    document.title = "I see everything";
+                    break;
+                case "brain":
+                    document.getElementById("control").innerHTML = "I remember everything";
+                    document.title = "I remember everything";
+                    break;
+                case "heart":
+                    document.getElementById("control").innerHTML = "I feel everything";
+                    document.title = "I feel everything";
+                    break;
+            }
+        }
+        else
+        {
+            document.getElementById("image").style.visibility = 'hidden';
+            source.src = "../tapes/" + r;
+            source.type = "video/mp4";
 
-        document.getElementById("mainVideo").appendChild(source);
+            document.getElementById("mainVideo").appendChild(source);
+        }
 
         const newURL = url.substring(0, url.indexOf('?'));
         const nextTitle = 'icantbreatheicantbreatheicantbreatheicantbreathe';

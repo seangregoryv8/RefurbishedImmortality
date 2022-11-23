@@ -24,6 +24,9 @@
 <body>
     <div id="leftbar"></div>
     <div id="rightbar"></div>
+    <div id='vhs_overlay_div'>
+        <img id="vhs_overlay" draggable=false>
+    </div>
     <p id="vhs_overlay">
         For optimal immersive experience, please refrain from using the browser arrow keys or the refresh button...
         <br>
@@ -39,7 +42,7 @@
         {
             if (event.key == "Enter" || event.key == " ")
             {
-                document.location.href = "./vhs_menu/menu.html";
+                document.location.href = "./vhs/tv.html";
             }
         })
         

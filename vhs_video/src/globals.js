@@ -6,9 +6,13 @@ export function changeCurrentTime(time)
     document.getElementById("currentTime").innerHTML = time;
 }
 
+import Finale from "./Finale.js";
+export const finale = new Finale();
+
 export function changeControl(ctl)
 {
-    document.getElementById("control").innerHTML = ctl;
+    if (!finale.getTrue())
+        document.getElementById("control").innerHTML = ctl;
 }
 
 export function changeVolume(amount)
@@ -31,12 +35,19 @@ export function visibleVideo(visible = true)
 
 export function getVideoTitle()
 {
-    let first = video.video.firstElementChild.outerHTML;
-    let second = first.substring(first.indexOf("src="), first.indexOf("type="))
-    let third = second.slice(second.indexOf('"') + 1, second.lastIndexOf('"'));
-    let fourth = third.slice(third.lastIndexOf("/") + 1, third.length);
-    let fifth = fourth.slice(0, fourth.lastIndexOf("."))
-    return fifth;
+    if (!finale.getTrue())
+    {
+        let first = video.video.firstElementChild.outerHTML;
+        let second = first.substring(first.indexOf("src="), first.indexOf("type="))
+        let third = second.slice(second.indexOf('"') + 1, second.lastIndexOf('"'));
+        let fourth = third.slice(third.lastIndexOf("/") + 1, third.length);
+        let fifth = fourth.slice(0, fourth.lastIndexOf("."))
+        return fifth;
+    }
+    else
+    {
+        return "Help me";
+    }
 }
 
 export function getRandomNumber(min = 0, max = 2) { return Math.floor(Math.random() * (max - min) + min); }

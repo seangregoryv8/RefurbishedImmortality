@@ -1,5 +1,5 @@
 import Controls from "./enums/Controls.js";
-import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, video, visibleVideo } from "./globals.js";
+import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, finale, video, visibleVideo } from "./globals.js";
 
 export default class Action
 {
@@ -116,6 +116,10 @@ export default class Action
 
     escape()
     {
+        if (finale.getTrue())
+        {
+            effect.troubleEjecting(0, false, document.getElementById("image"));
+        }
         if (!this.stay)
         {
             this.untouchable = true;
@@ -132,7 +136,7 @@ export default class Action
             {
                 if (effect.rollTruePure(3))
                 {
-                    effect.troubleEjecting();
+                    effect.troubleEjecting(2500);
                 }
                 else
                 {
