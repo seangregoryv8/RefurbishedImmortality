@@ -8,16 +8,6 @@ export default class Effect
         this.activeEffect = false;
     }
 
-    /**
-     * 
-     * @param {Function} func 
-     */
-    rollTrue(func, max = 1)
-    {
-        if (getRandomNumber(max + 1) == max)
-            func();
-    }
-
     rollStatic()
     {
         switch (Math.floor(Math.random() * 3))

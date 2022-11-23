@@ -1,9 +1,6 @@
 import Effect from "./Effect.js";
 export const effect = new Effect();
 
-import Videos from "./Videos.js";
-export const videos = new Videos();
-
 export const TAPES = document.getElementById("tapes");
 export const TAPEINDEX = document.getElementById("tapeIndex");
 import Tapes from "./Tapes.js";
