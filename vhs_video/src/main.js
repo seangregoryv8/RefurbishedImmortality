@@ -6,7 +6,7 @@ import
     getVideoTitle,
     changeControl
 } from "./globals.js"
-import { instructions_state, changeInstructions } from "../../all.js";
+import { instructions_state, changeInstructions, finale } from "../../all.js";
 
 changeInstructions(localStorage.getItem("instructions"))
 

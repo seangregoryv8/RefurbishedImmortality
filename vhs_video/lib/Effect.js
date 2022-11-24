@@ -94,39 +94,6 @@ export default class Effect
         }
     }
 
-    createGlitches()
-    {
-        let bg = document.getElementsByTagName('body')[0];
-        let count = 20;
-        for (let i = 0; i < count; i++)
-        {
-            let glitchBox = document.createElement('div')
-            glitchBox.className = 'box';
-            bg.appendChild(glitchBox);
-        }
-        let glitch = document.getElementsByClassName('box');
-
-        setInterval(function() 
-        {
-            for (let i = 0; i < glitch.length; i++)
-            {
-                glitch[i].style.left = Math.floor(Math.random() * 100) + 'vw';
-                glitch[i].style.top = Math.floor(Math.random() * 100) + 'vh';
-                glitch[i].style.width = Math.floor(Math.random() * 400) + 'px';
-                glitch[i].style.height = Math.floor(Math.random() * 100) + 'px';
-                glitch[i].style.backgroundPosition = Math.floor(Math.random() * 100) + 'px';
-            }
-            let ctl = document.getElementById("control").style;
-            ctl.left = Math.floor(Math.random() * 100) + 'vw';
-            ctl.top = Math.floor(Math.random() * 100) + 'vh';
-        }, 50)
-        setTimeout(function() 
-        {
-            localStorage.setItem("instructions", instructions_state);
-            document.location.href = "../vhs_menu/menu.html"
-        }, 1500)
-    }
-
     troubleEjecting(time, black = true, img)
     {
         changeControl("Trouble Ejecting");

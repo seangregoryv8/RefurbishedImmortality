@@ -1,20 +1,38 @@
 import
 {
+    BODY,
     effect,
     tapes
 } from "./globals.js";
-import { instructions_state, changeInstructions } from "../../all.js";
-import { finale } from "../../all.js"
+import { instructions_state, changeInstructions, finale } from "../../all.js";
 
+effect.rollStatic();
 changeInstructions(localStorage.getItem("instructions"))
 
-if (localStorage.getItem('previousTape') != null)
+window.onload = function()
 {
-    finale.checkForFinale(localStorage.getItem('previousTape'))
+    if (localStorage.getItem("finaleTapes") != null)
+        finale.tapes = JSON.parse(localStorage.getItem("finaleTapes"))
+    if (localStorage.getItem('previousTape') != null)
+    {
+        finale.checkForFinale(localStorage.getItem('previousTape'))
+    }
+
+    if (localStorage.getItem('state') == 'finale')
+    {
+        BODY.style.backgroundColor = "#12266d";
+        document.getElementById("title").innerHTML = "H E L P M E";
+        let amountOfTrue = Object.values(finale.tapes).reduce((a, item) => a + item, 0);
+        effect.createGlitches(amountOfTrue * 5);
+        effect.none();
+        effect.createStatic(amountOfTrue);
+    }
 }
-    
-console.log(localStorage.getItem('previousTape'));
-console.log(finale.tapes);
+window.onbeforeunload = function()
+{
+    localStorage.setItem("finaleTapes", JSON.stringify(finale.tapes))
+}
+
 //if (localStorage.getItem('previousTape'))
 
 // Get the ul
@@ -23,7 +41,14 @@ console.log(finale.tapes);
 // Formulate it to make the li's for each iteration
 // Reformat so \ appears as /
 
-effect.rollStatic();
+var audio = new Audio();
+audio.src = "../../resources/sound/select.wav";
+audio.preload = "auto";
+
+document.addEventListener('DOMContentLoaded', () => 
+{
+    audio.load();
+});
 
 let keyDown = false;
 
@@ -38,15 +63,19 @@ document.addEventListener('keydown', event =>
                 localStorage.setItem('state', ((localStorage.getItem('state') == 'finale') ? 'regular' : 'finale'));
                 document.location.reload();
             case "ArrowUp":
+                audio.play();
                 tapes.up();
                 break;
             case "ArrowDown":
+                audio.play();
                 tapes.down();
                 break;
             case "ArrowLeft":
+                audio.play();
                 tapes.left();
                 break;
             case "ArrowRight":
+                audio.play();
                 tapes.right();
                 break;
             case " ":

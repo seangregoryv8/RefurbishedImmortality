@@ -9,12 +9,11 @@ export default class Finale
 
     checkForFinale(tape)
     {
-        console.log(tape)
-        for (let key in tapes)
+        for (let key in this.tapes)
         {
             if (tape == key)
             {
-                tapes[key] = true;
+                this.tapes[key] = true;
             }
         }
     }

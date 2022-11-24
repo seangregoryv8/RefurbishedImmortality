@@ -1,13 +1,14 @@
 import Effect from "./Effect.js";
 export const effect = new Effect();
 
+export const BODY = document.getElementsByTagName('body')[0]
 export const TAPES = document.getElementById("tapes");
 export const TAPEINDEX = document.getElementById("tapeIndex");
 import Tapes from "./Tapes.js";
 
 addEventListener('load', function() 
 {
-    fetch("../menu.php")
+    fetch("../getTapes.php")
     .then(response => response.json())
     .then(body => 
     {
