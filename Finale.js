@@ -1,5 +1,24 @@
 export default class Finale
 {
+    tapes = 
+    {
+        eyes: false,
+        heart: false,
+        brain: false
+    };
+
+    checkForFinale(tape)
+    {
+        console.log(tape)
+        for (let key in tapes)
+        {
+            if (tape == key)
+            {
+                tapes[key] = true;
+            }
+        }
+    }
+
     lines = 
     [
         {
@@ -18,13 +37,5 @@ export default class Finale
     constructor()
     {
         this.currentLine = 0;
-    }
-    getTrue()
-    {
-        return document.getElementById("image").style.visibility == 'visible';
-    }
-    increment()
-    {
-
     }
 }

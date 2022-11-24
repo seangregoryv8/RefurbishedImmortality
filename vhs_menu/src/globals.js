@@ -14,11 +14,20 @@ addEventListener('load', function()
         let tapesJSON = [];
         for (let i = 0; i < body.length; i++)
         {
-            tapesJSON[i] = body[i].replaceAll("\\", "/");
-            tapesJSON[i] = tapesJSON[i].substring(8, tapesJSON[i].length);
+            let t = body[i].replaceAll("\\", "/");
+            t = t.substring(8, t.length);
+            if (this.localStorage.getItem('state') == 'finale')
+            {
+                if (t.includes('finale'))
+                    tapesJSON.push(t);
+            }
+            else
+            {
+                if (!t.includes('finale'))
+                    tapesJSON.push(t);
+            }
         }
         
-        //console.log(tapes);
         tapes = new Tapes(tapesJSON);
     })
 });

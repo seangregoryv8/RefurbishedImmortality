@@ -3,10 +3,12 @@ import
     dateTime,
     effect,
     action,
-    keys,
     getVideoTitle,
     changeControl
 } from "./globals.js"
+import { instructions_state, changeInstructions } from "../../all.js";
+
+changeInstructions(localStorage.getItem("instructions"))
 
 effect.rollStatic();
 action.untouchable = false;
@@ -21,11 +23,49 @@ document.getElementById("time").innerHTML = dateTime.getTime();
 document.getElementById("currentDate").innerHTML = dateTime.getDate();
 changeControl(action.symbol);
 
+let keyDown = false;
+
 document.addEventListener('keydown', event => 
 {
-    keys.allValues(event);
+    if (!keyDown && !action.untouchable)
+    {
+        keyDown = true;
+        switch (event.key)
+        {
+            case "R":
+            case "r":
+                action.record();
+                break;
+            case "Backspace":
+            case "Delete":
+                action.delete();
+                break;
+            case "Escape":
+                action.escape();
+                break;
+            case " ":
+            case "Enter":
+                action.spacebar();
+                break;
+            case "ArrowRight":
+                action.left();
+                break;
+            case "ArrowLeft":
+                action.right();
+                break;
+            case "ArrowUp":
+            case "ArrowDown":
+                action.volume(event.key)
+                break;
+        }
+    }
     changeControl(action.symbol);
 });
+
+document.addEventListener('keyup', event => 
+{
+    keyDown = false;
+})
 
 setInterval(function() 
 {
@@ -34,5 +74,7 @@ setInterval(function()
 }, 1000);
 
 document.title = getVideoTitle();
+
+localStorage.setItem('previousTape', document.title);
 
 // Email: computation.lab@concordia.ca

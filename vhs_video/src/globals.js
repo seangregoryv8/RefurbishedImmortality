@@ -6,12 +6,9 @@ export function changeCurrentTime(time)
     document.getElementById("currentTime").innerHTML = time;
 }
 
-import Finale from "./Finale.js";
-export const finale = new Finale();
-
 export function changeControl(ctl)
 {
-    if (!finale.getTrue())
+    if (localStorage.getItem('state') != 'finale')
         document.getElementById("control").innerHTML = ctl;
 }
 
@@ -35,18 +32,21 @@ export function visibleVideo(visible = true)
 
 export function getVideoTitle()
 {
-    if (!finale.getTrue())
+    if (localStorage.getItem('state') != 'finale')
     {
-        let first = video.video.firstElementChild.outerHTML;
-        let second = first.substring(first.indexOf("src="), first.indexOf("type="))
-        let third = second.slice(second.indexOf('"') + 1, second.lastIndexOf('"'));
-        let fourth = third.slice(third.lastIndexOf("/") + 1, third.length);
-        let fifth = fourth.slice(0, fourth.lastIndexOf("."))
-        return fifth;
+        let title = video.video.firstElementChild.outerHTML;
+        title = title.substring(title.indexOf("src="), title.indexOf("type="))
+        title = title.slice(title.indexOf('"') + 1, title.lastIndexOf('"'));
+        title = title.slice(title.lastIndexOf("/") + 1, title.length);
+        title = title.slice(0, title.lastIndexOf("."))
+        return title;
     }
     else
     {
-        return "Help me";
+        let title = document.getElementById("image").src;
+        title = title.substring(title.lastIndexOf('/') + 1, title.length);
+        title = title.substring(0, title.lastIndexOf('.'));
+        return title;
     }
 }
 
@@ -68,6 +68,7 @@ import Action from "./Action.js";
 export const action = new Action();
 
 import KeyEventValues from "./KeyEventValues.js";
+import { finale } from "../../all.js";
 export const keys = new KeyEventValues();
 
 document.getElementById("mainVideo").addEventListener('ended', () => 

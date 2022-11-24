@@ -1,7 +1,19 @@
 let ins = document.getElementById("instructions_img");
-let instructions_state;
+export let instructions_state;
 const min_start = 0;
 const min_end = -900;
+
+var audio = new Audio();
+audio.src = "../resources/pickupCoin.wav";
+audio.preload = "auto";
+
+import Finale from "./Finale.js";
+export const finale = new Finale();
+
+document.addEventListener('DOMContentLoaded', () => 
+{
+    audio.load();
+});
 
 document.addEventListener('keydown', event => 
 {
@@ -9,20 +21,31 @@ document.addEventListener('keydown', event =>
     {
         case "x":
         case "X":
-            let ran = Math.floor(Math.random() * (10 - 1) + 1);
-            console.log(ran);
-            if (ran == 9)
-            {
-                var audio = new Audio();
-                audio.src = "../resources/amongus.mp3";
+            //let ran = Math.floor(Math.random() * (2 - 1) + 1);
+            //if (ran == 9)
+            //{
+                console.log("HI")
                 audio.play();
-            }
-            changeInstructions(instructions_state);
+            //}
+            changeInstructionsAnimation(instructions_state);
             break;
     }
 })
 
-function changeInstructions(state)
+export function changeInstructions(state)
+{
+    instructions_state = state ?? "off";
+    switch (state)
+    {
+        case "on":
+            ins.style.bottom = min_start + 'px';
+            break;
+        case "off":
+            ins.style.bottom = min_end + 'px';
+            break;
+    }
+}
+function changeInstructionsAnimation(state)
 {
     switch (state)
     {

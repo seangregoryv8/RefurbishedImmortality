@@ -1,5 +1,7 @@
+import { instructions_state } from "../../all.js";
 import Controls from "./enums/Controls.js";
-import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, finale, video, visibleVideo } from "./globals.js";
+import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, video, visibleVideo } from "./globals.js";
+import { finale } from "../../all.js";
 
 export default class Action
 {
@@ -116,7 +118,7 @@ export default class Action
 
     escape()
     {
-        if (finale.getTrue())
+        if (localStorage.getItem('state') == 'finale')
         {
             effect.troubleEjecting(0, false, document.getElementById("image"));
         }
@@ -134,12 +136,13 @@ export default class Action
     
             setTimeout(() => 
             {
-                if (effect.rollTruePure(3))
+                if (effect.rollTruePure(4))
                 {
                     effect.troubleEjecting(2500);
                 }
                 else
                 {
+                    localStorage.setItem("instructions", instructions_state);
                     document.location.href = "../vhs_menu/menu.html"
                 }
             }, 3500)

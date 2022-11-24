@@ -1,5 +1,13 @@
+import { instructions_state, changeInstructions } from "../all.js";
+import { fadeInBlue, fadeOutBlue } from "./globals.js";
+
+changeInstructions(localStorage.getItem("instructions"))
+
 let tv = document.getElementById("tv");
 let tv_state;
+tv.style.animation = "zoomOut 1.2s ease-out";
+
+fadeInBlue();
 
 document.addEventListener('keydown', event => 
 {
@@ -10,7 +18,15 @@ document.addEventListener('keydown', event =>
             break;
         case "Enter":
             if (tv_state == "on")
-                document.location.href = "../vhs_menu/menu.html";
+            {
+                fadeOutBlue();
+                tv.style.animation = "zoomIn 1s linear";
+                tv.addEventListener('animationend', () => 
+                {
+                    localStorage.setItem("instructions", instructions_state)
+                    document.location.href = "../vhs_menu/menu.html";
+                });
+            }
     }
 })
 

@@ -1,4 +1,6 @@
-import { action, BODY, changeControl, DEBUG, finale, getRandomNumber, video } from "../src/globals.js";
+import { instructions_state } from "../../all.js";
+import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
+import { finale } from "../../all.js";
 
 export default class Effect
 {
@@ -43,12 +45,12 @@ export default class Effect
 
     none()
     {
-        if (!DEBUG && !finale.getTrue())
+        if (!DEBUG && localStorage.getItem('state') != 'finale')
             document.getElementById("vhs_overlay_div").style.visibility = 'hidden';
     }
     light()
     {
-        if (!DEBUG && !finale.getTrue())
+        if (!DEBUG && localStorage.getItem('state') != 'finale')
         {
             document.getElementById("vhs_overlay").src = this.damage_light;
             document.getElementById("vhs_overlay_div").style.visibility = 'visible';
@@ -56,7 +58,7 @@ export default class Effect
     }
     heavy()
     {
-        if (!DEBUG && !finale.getTrue())
+        if (!DEBUG && localStorage.getItem('state') != 'finale')
         {
             document.getElementById("vhs_overlay").src = this.damage_heavy;
             document.getElementById("vhs_overlay_div").style.visibility = 'visible';
@@ -120,6 +122,7 @@ export default class Effect
         }, 50)
         setTimeout(function() 
         {
+            localStorage.setItem("instructions", instructions_state);
             document.location.href = "../vhs_menu/menu.html"
         }, 1500)
     }
@@ -161,6 +164,7 @@ export default class Effect
             }, 50)
             setTimeout(function() 
             {
+                localStorage.setItem("instructions", instructions_state);
                 document.location.href = "../vhs_menu/menu.html"
             }, getRandomNumber(100, 2000))
         }, time)

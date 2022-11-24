@@ -10,14 +10,10 @@
     <link rel="stylesheet" href="./stylesheet/glitch.css"/>
 </head>
 <body>
+    <script type="module" src="../vhsEffect.js"></script>
     <div id="image_div">
         <img id="image" draggable=false>
     </div>
-    <div id='vhs_overlay_div'>
-        <img id="vhs_overlay" draggable=false>
-    </div>
-    <div id="leftbar"></div>
-    <div id="rightbar"></div>
 
     <div id="all">
         <p id="control"></p>
@@ -38,9 +34,7 @@
             <p id="volumeLevel">||||||||||</p>
         </div>
     </div>
-    <img id="instructions_img" src="../resources/instructions-2.png">
     <script type="module" src="../all.js"></script>
-
     <script type="module" src="./src/main.js"></script>
     <script type="text/javascript">
         var source = document.createElement('source');
