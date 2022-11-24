@@ -1,7 +1,16 @@
-import { instructions_state } from "../../all.js";
+import { instructions_state, finale } from "../../src/all.js";
 import Controls from "./enums/Controls.js";
-import { action, changeControl, changeCurrentTime, changeVolume, currentTime, effect, video, visibleVideo } from "./globals.js";
-import { finale } from "../../all.js";
+import
+{
+    action,
+    changeControl,
+    changeCurrentTime,
+    changeVolume,
+    currentTime,
+    effect,
+    video,
+    visibleVideo
+} from "./globals.js";
 
 export default class Action
 {

@@ -1,6 +1,5 @@
-import { instructions_state } from "../../all.js";
+import { instructions_state, finale } from "../../src/all.js";
 import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
-import { finale } from "../../all.js";
 
 export default class Effect
 {

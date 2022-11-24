@@ -4,7 +4,14 @@ import
     effect,
     tapes
 } from "./globals.js";
-import { instructions_state, changeInstructions, finale } from "../../all.js";
+import
+{
+    instructions_state,
+    changeInstructions,
+    finale,
+    sound
+} from "../../src/all.js";
+import Sounds from "../../src/enums/Sounds.js";
 
 effect.rollStatic();
 changeInstructions(localStorage.getItem("instructions"))
@@ -41,15 +48,6 @@ window.onbeforeunload = function()
 // Formulate it to make the li's for each iteration
 // Reformat so \ appears as /
 
-var audio = new Audio();
-audio.src = "../../resources/sound/select.wav";
-audio.preload = "auto";
-
-document.addEventListener('DOMContentLoaded', () => 
-{
-    audio.load();
-});
-
 let keyDown = false;
 
 document.addEventListener('keydown', event => 
@@ -63,19 +61,19 @@ document.addEventListener('keydown', event =>
                 localStorage.setItem('state', ((localStorage.getItem('state') == 'finale') ? 'regular' : 'finale'));
                 document.location.reload();
             case "ArrowUp":
-                audio.play();
+                sound.play(Sounds.Select);
                 tapes.up();
                 break;
             case "ArrowDown":
-                audio.play();
+                sound.play(Sounds.Select);
                 tapes.down();
                 break;
             case "ArrowLeft":
-                audio.play();
+                sound.play(Sounds.Select);
                 tapes.left();
                 break;
             case "ArrowRight":
-                audio.play();
+                sound.play(Sounds.Select);
                 tapes.right();
                 break;
             case " ":

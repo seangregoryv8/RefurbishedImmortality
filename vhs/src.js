@@ -1,4 +1,4 @@
-import { instructions_state, changeInstructions } from "../all.js";
+import { instructions_state, changeInstructions } from "../src/all.js";
 import { fadeInBlue, fadeOutBlue } from "./globals.js";
 
 changeInstructions(localStorage.getItem("instructions"))

@@ -68,7 +68,6 @@ import Action from "./Action.js";
 export const action = new Action();
 
 import KeyEventValues from "./KeyEventValues.js";
-import { finale } from "../../all.js";
 export const keys = new KeyEventValues();
 
 document.getElementById("mainVideo").addEventListener('ended', () => 

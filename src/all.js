@@ -3,7 +3,11 @@ export let instructions_state;
 const min_start = 0;
 const min_end = -900;
 
+import Sound from "./Sound.js"
+export const sound = new Sound();
+
 import Finale from "./Finale.js";
+import Sounds from "./enums/Sounds.js";
 export const finale = new Finale();
 
 
@@ -13,6 +17,14 @@ document.addEventListener('keydown', event =>
     {
         case "x":
         case "X":
+            sound.play(Sounds.AmongUs);
+            //let ran = Math.floor(Math.random() * (2 - 1) + 1);
+            //if (ran == 9)
+            //{
+                //audio.cloneNode().play();
+            //}
+            //audio.cloneNode().play();
+            //console.log(audio);
             changeInstructionsAnimation(instructions_state);
             break;
     }
