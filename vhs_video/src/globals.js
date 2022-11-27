@@ -8,7 +8,7 @@ export function changeCurrentTime(time)
 
 export function changeControl(ctl)
 {
-    if (localStorage.getItem('state') != 'finale')
+    if (!stateMachine.check(TapeState.Finale))
         document.getElementById("control").innerHTML = ctl;
 }
 
@@ -32,7 +32,7 @@ export function visibleVideo(visible = true)
 
 export function getVideoTitle()
 {
-    if (localStorage.getItem('state') != 'finale')
+    if (!stateMachine.check(TapeState.Finale))
     {
         let title = video.video.firstElementChild.outerHTML;
         title = title.substring(title.indexOf("src="), title.indexOf("type="))
@@ -68,6 +68,8 @@ import Action from "./Action.js";
 export const action = new Action();
 
 import KeyEventValues from "./KeyEventValues.js";
+import TapeState from "../../src/enums/TapeState.js";
+import { stateMachine } from "../../src/globals.js";
 export const keys = new KeyEventValues();
 
 document.getElementById("mainVideo").addEventListener('ended', () => 

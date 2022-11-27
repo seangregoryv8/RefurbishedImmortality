@@ -55,6 +55,11 @@ p
     0% { scale: 100%; }
     100% { scale: 700%; }
 }
+@keyframes zoomInLess
+{
+    0% { scale: 100%; }
+    100% { scale: 200%; }
+}
 @keyframes fadeIn
 {
     0% { opacity: 1; }

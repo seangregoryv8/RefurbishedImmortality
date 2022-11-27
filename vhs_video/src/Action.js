@@ -1,4 +1,6 @@
-import { instructions_state, finale } from "../../src/all.js";
+import TapeState from "../../src/enums/TapeState.js";
+import { finale, stateMachine } from "../../src/globals.js";
+import { instructions_state } from "../../src/main.js";
 import Controls from "./enums/Controls.js";
 import
 {
@@ -127,7 +129,7 @@ export default class Action
 
     escape()
     {
-        if (localStorage.getItem('state') == 'finale')
+        if (stateMachine.check(TapeState.Finale))
         {
             effect.troubleEjecting(0, false, document.getElementById("image"));
         }

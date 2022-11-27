@@ -30,7 +30,7 @@
     <p id="vhs_overlay">
         For optimal immersive experience, please refrain from using the browser arrow keys or the refresh button...
         <br>
-        Use keyboard arrows to navigate.  Instructions can be viewed on the bottom right...
+        Use keyboard arrows to navigate. Instructions can be viewed on the bottom right...
         <br>
         This is a horror story. May contain some flashing lights and 
         mature topics. Viewer discretion is advised...
@@ -38,6 +38,7 @@
         Press spacebar or enter to continue...
     </p>
     <script type="text/javascript">
+        localStorage.setItem("state", 'regular')
         document.addEventListener('keydown', (event) => 
         {
             if (event.key == "Enter" || event.key == " ")

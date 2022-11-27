@@ -47,6 +47,9 @@ export default class Effect
         (amount == 2) ? 0.5 : 
         (amount == 3) ? 0.8 : 0.1;
     }
+
+    boxInterval = null;
+
     createGlitches(amount)
     {
         let bg = document.getElementsByTagName('body')[0];
@@ -59,7 +62,7 @@ export default class Effect
         }
         let glitch = document.getElementsByClassName('box');
 
-        setInterval(function() 
+        this.boxInterval = setInterval(function() 
         {
             for (let i = 0; i < glitch.length; i++)
             {
@@ -70,5 +73,16 @@ export default class Effect
                 glitch[i].style.backgroundPosition = Math.floor(Math.random() * 100) + 'px';
             }
         }, 50)
+    }
+    clearBoxes()
+    {
+        clearInterval(this.boxInterval);
+
+        const boxes = document.querySelectorAll('.box');
+
+        boxes.forEach(box => 
+            {
+                box.remove();
+            })
     }
 }

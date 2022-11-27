@@ -30,4 +30,5 @@ document.getElementsByTagName('body')[0].appendChild(rightBar);
 let instructions_img = document.createElement('img');
 instructions_img.id = 'instructions_img';
 instructions_img.src = "../resources/instructions-2.png";
+instructions_img.draggable = false;
 document.getElementsByTagName('body')[0].appendChild(instructions_img);

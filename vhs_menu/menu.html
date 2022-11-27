@@ -10,18 +10,22 @@
 </head>
 <body>
     <script type="module" src="../src/vhsEffect.js"></script>
-    <script type="module" src="../src/all.js"></script>
+    <script type="module" src="../src/main.js"></script>
     <div id="topbar"></div>
     <div id="bottombar"></div>
 
-    <div>
+    <div id="all">
         <p id="title">M E N U</p>
 
         <ul id="tapes">
         </ul>
 
+        <p id="error" style="visibility: hidden;">ERROR</p>
+
         <ul id="tapeIndex">
         </ul>
+        <img id="face" src="../resources/face.png" draggable="false" style="visibility: hidden;">
+        <p id="dialogue" style="z-index: 1;"></p>
     </div>
     <script type="module" src="./src/main.js"></script>
 

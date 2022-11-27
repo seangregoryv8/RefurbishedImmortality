@@ -1,23 +1,42 @@
 import
 {
-    BODY,
     effect,
-    tapes
+    face,
+    tapes,
+    error,
+    BODY
 } from "./globals.js";
+
 import
 {
     instructions_state,
-    changeInstructions,
-    finale,
-    sound
-} from "../../src/all.js";
-import Sounds from "../../src/enums/Sounds.js";
+    changeInstructions
+} from "../../src/main.js"
 
+import
+{
+    finale,
+    sounds,
+    stateMachine
+} from "../../src/globals.js";
+
+import SoundName from "../../src/enums/SoundName.js";
+import TapeState from "../../src/enums/TapeState.js";
+
+// Add error message everytime after the 3 have been selected
+// Have face continuously and slowly approach every time error appears
+// Have VCR crash after face gets close enough
 effect.rollStatic();
 changeInstructions(localStorage.getItem("instructions"))
 
 window.onload = function()
 {
+    if (stateMachine.check(TapeState.Choice))
+    {
+        face.height = 670;
+        face.style.visibility = "visible";
+        face.style.animation = "shake 0.3s linear";
+    }
     if (localStorage.getItem("finaleTapes") != null)
         finale.tapes = JSON.parse(localStorage.getItem("finaleTapes"))
     if (localStorage.getItem('previousTape') != null)
@@ -25,15 +44,84 @@ window.onload = function()
         finale.checkForFinale(localStorage.getItem('previousTape'))
     }
 
-    if (localStorage.getItem('state') == 'finale')
+    if (stateMachine.check(TapeState.Finale))
     {
-        BODY.style.backgroundColor = "#12266d";
-        document.getElementById("title").innerHTML = "H E L P M E";
-        let amountOfTrue = Object.values(finale.tapes).reduce((a, item) => a + item, 0);
-        effect.createGlitches(amountOfTrue * 5);
-        effect.none();
-        effect.createStatic(amountOfTrue);
+        face.style.visibility = 'visible';
+        finale.prepareFirst();
     }
+    
+    let keyDown = false;
+    
+    document.addEventListener('keydown', event => 
+    {
+        if (!finale.error)
+        {
+            if (!keyDown)
+            {
+                keyDown = true;
+                switch (event.key)
+                {
+                    case "l":
+                        stateMachine.set(stateMachine.check(TapeState.Finale) ? TapeState.Regular : TapeState.Finale)
+                        document.location.reload();
+                    case "ArrowUp":
+                        sounds.play(SoundName.Select);
+                        tapes.up();
+                        break;
+                    case "ArrowDown":
+                        sounds.play(SoundName.Select);
+                        tapes.down();
+                        break;
+                    case "ArrowLeft":
+                        sounds.play(SoundName.Select);
+                        tapes.left();
+                        break;
+                    case "ArrowRight":
+                        sounds.play(SoundName.Select);
+                        tapes.right();
+                        break;
+                    case " ":
+                    case "Enter":
+                        localStorage.setItem("instructions", instructions_state);
+                        document.location.href = tapes.getTape().getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.getTape().id;
+                        break;
+                    case "Backspace":
+                        document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
+                        document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
+
+                        document.getElementById("topbar").style.top = 0;
+                        document.getElementById("bottombar").style.bottom = 0;
+                        document.addEventListener("animationend", function() 
+                        {
+                            localStorage.setItem("instructions", instructions_state);
+                            document.location.href = "../vhs/tv.html";
+                        });
+                        break;
+                }
+            }
+        }
+        else
+        {
+            error.style.visibility = "visible";
+            error.style.left = Math.floor(Math.random() * 100) + 'vw';
+            error.style.top = Math.floor(Math.random() * 100) + 'vh';
+            finale.increaseFace();
+            setTimeout(() => 
+            {
+                setInterval(() => 
+                {
+                    error.style.left = Math.floor(Math.random() * 100) + 'vw';
+                    error.style.top = Math.floor(Math.random() * 100) + 'vh';
+                }, 50);
+                
+            }, 4000)
+        }
+    })
+    
+    document.addEventListener('keyup', () => 
+    {
+        keyDown = false;
+    })
 }
 window.onbeforeunload = function()
 {
@@ -48,92 +136,3 @@ window.onbeforeunload = function()
 // Formulate it to make the li's for each iteration
 // Reformat so \ appears as /
 
-let keyDown = false;
-
-document.addEventListener('keydown', event => 
-{
-    if (!keyDown)
-    {
-        keyDown = true;
-        switch (event.key)
-        {
-            case "l":
-                localStorage.setItem('state', ((localStorage.getItem('state') == 'finale') ? 'regular' : 'finale'));
-                document.location.reload();
-            case "ArrowUp":
-                sound.play(Sounds.Select);
-                tapes.up();
-                break;
-            case "ArrowDown":
-                sound.play(Sounds.Select);
-                tapes.down();
-                break;
-            case "ArrowLeft":
-                sound.play(Sounds.Select);
-                tapes.left();
-                break;
-            case "ArrowRight":
-                sound.play(Sounds.Select);
-                tapes.right();
-                break;
-            case " ":
-            case "Enter":
-                localStorage.setItem("instructions", instructions_state);
-                document.location.href = tapes.getTape().getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.getTape().id;
-                break;
-            case "Backspace":
-                document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
-                document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
-                
-                document.getElementById("topbar").style.top = 0;
-                document.getElementById("bottombar").style.bottom = 0;
-                document.addEventListener("animationend", function() 
-                {
-                    localStorage.setItem("instructions", instructions_state);
-                    document.location.href = "../vhs/tv.html";
-                })
-                break;
-        }
-    }
-})
-
-document.addEventListener('keyup', () => 
-{
-    keyDown = false;
-})
-/*
-fetch("../resources/config.json")
-.then((response) => response.json())
-.then((response) => 
-{
-    console.log(response);
-    const 
-    {
-        tapes: tapes
-    } = response;
-
-    this.allTapes = tapes;
-    console.log(this.allTapes);
-})
-
-*/
-/*
-let node = new LinkList();
-node.add("first")
-node.add("second")
-node.add("third")
-node.add("fourth", 3)
-node.remove("first");
-
-node.remove();
-
-node.setByElement("second", "fifth")
-
-node.setByIndex(2, "second")
-*/
-
-//let tree = new TreeNode();
-///console.log(tree);
-
-//tree.add("file1")
-//tree.add("file2")

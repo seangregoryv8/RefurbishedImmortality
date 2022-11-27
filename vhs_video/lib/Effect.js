@@ -1,4 +1,6 @@
-import { instructions_state, finale } from "../../src/all.js";
+import TapeState from "../../src/enums/TapeState.js";
+import { finale, stateMachine } from "../../src/globals.js";
+import { instructions_state } from "../../src/main.js";
 import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
 
 export default class Effect
@@ -44,12 +46,12 @@ export default class Effect
 
     none()
     {
-        if (!DEBUG && localStorage.getItem('state') != 'finale')
+        if (!DEBUG && !stateMachine.check(TapeState.Finale))
             document.getElementById("vhs_overlay_div").style.visibility = 'hidden';
     }
     light()
     {
-        if (!DEBUG && localStorage.getItem('state') != 'finale')
+        if (!DEBUG && !stateMachine.check(TapeState.Finale))
         {
             document.getElementById("vhs_overlay").src = this.damage_light;
             document.getElementById("vhs_overlay_div").style.visibility = 'visible';
@@ -57,7 +59,7 @@ export default class Effect
     }
     heavy()
     {
-        if (!DEBUG && localStorage.getItem('state') != 'finale')
+        if (!DEBUG && !stateMachine.check(TapeState.Finale))
         {
             document.getElementById("vhs_overlay").src = this.damage_heavy;
             document.getElementById("vhs_overlay_div").style.visibility = 'visible';

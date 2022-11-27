@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCR</title>
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body
+        {
+            background-color: #12266d;
+            overflow: hidden;
+        }
+        
+        #leftbar
+        {
+            background-color: black;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 9%;
+            height: 100%;
+        }
+        #rightbar
+        {
+            background-color: black;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 9%;
+            height: 100%;
+        }
+        
+        #vhs_overlay
+        {
+            position: fixed;
+            left: 9%;
+            top: 0;
+            max-width: 82%;
+            height: 100%;
+        }
+        
+        #staticNoise
+        {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        #face
+        {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="bar"></div>
+    <div id="leftbar"></div>
+    <div id="rightbar"></div>
+    <div id='vhs_overlay_div'>
+        <img id="vhs_overlay" draggable=false src="../../vhs_overlays/1.gif">
+    </div>
+    <div id="static_div">
+        <img id="staticNoise" draggable=false src="../../vhs_overlays/static.gif">
+    </div>
+    <img id="face" src="../../resources/face.png" draggable="false">
+
+    <script>
+        document.getElementsByTagName('body')[0].style.animation = "shake 0.3s infinite linear";
+    </script>
+</body>
+</html>

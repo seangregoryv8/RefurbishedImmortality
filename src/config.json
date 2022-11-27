@@ -1,0 +1,17 @@
+{
+    "sounds":
+    [
+        {
+            "name": "paper",
+            "path": "../resources/sound/paper.wav",
+            "size": 1,
+            "volume": 0.8
+        },
+        {
+            "name": "select",
+            "path": "../resources/sound/select.wav",
+            "size": 1,
+            "volume": 0.8
+        }
+    ]
+}
