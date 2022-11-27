@@ -1,7 +1,8 @@
 const SoundName = 
 {
     Select: 'select',
-    Paper: 'paper'
+    Paper: 'paper',
+    Hiss: 'hiss'
 }
 
 export default SoundName;

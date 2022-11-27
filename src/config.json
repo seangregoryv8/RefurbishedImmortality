@@ -12,6 +12,13 @@
             "path": "../resources/sound/select.wav",
             "size": 1,
             "volume": 0.8
+        },
+        {
+            "name": "hiss",
+            "path": "../resources/sound/hiss.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
         }
     ]
 }
