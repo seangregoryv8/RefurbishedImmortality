@@ -1,5 +1,3 @@
-import TapeState from "../../src/enums/TapeState.js";
-import { stateMachine } from "../../src/globals.js";
 import { TAPEINDEX, TAPES } from "./globals.js";
 
 export default class Tapes

@@ -1,5 +1,5 @@
 import TapeState from "../../src/enums/TapeState.js";
-import { finale, stateMachine } from "../../src/globals.js";
+import { stateMachine } from "../../src/globals.js";
 import { instructions_state } from "../../src/main.js";
 import Controls from "./enums/Controls.js";
 import

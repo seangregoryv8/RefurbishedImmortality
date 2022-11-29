@@ -3,8 +3,7 @@ import
     effect,
     face,
     tapes,
-    error,
-    BODY
+    error
 } from "./globals.js";
 
 import
