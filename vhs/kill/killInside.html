@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./animations.css">
     <title>VCR</title>
     <style>
         *
@@ -11,6 +12,17 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        #background
+        {
+            position: fixed;
+            top: 0;
+            left: -5%;
+            width: 130%;
+            height: 100%;
+            object-fit: fill;
+            z-index: 1;
         }
         
         body
@@ -27,6 +39,7 @@
             left: 0;
             width: 9%;
             height: 100%;
+            z-index: 1;
         }
         #rightbar
         {
@@ -36,6 +49,7 @@
             right: 0;
             width: 9%;
             height: 100%;
+            z-index: 1;
         }
         
         #vhs_overlay
@@ -45,6 +59,7 @@
             top: 0;
             max-width: 82%;
             height: 100%;
+            z-index: 1;
         }
         
         #staticNoise
@@ -54,30 +69,84 @@
             top: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
         }
         #face
         {
             position: absolute;
             inset: 0;
             margin: auto;
+            height: 530px;
+        }
+        /* VHS Font */
+        @font-face
+        {
+            font-family: 'Vhs';
+            src: url(../../resources/Vhs.ttf) format('truetype');
+        }
+
+        p, li, a
+        {
+            text-decoration: none;
+            font-size: 48px;
+            font-family: 'Vhs';
+            color: white;
+            text-shadow: 4px 4px black;
+        }
+        #dialogue
+        {
+            position: fixed;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            bottom: 10%;
+        }
+
+        #broken
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
         }
     </style>
 </head>
 <body>
+    <script src="./inside.js"></script>
     <div id="bar"></div>
+    <div id="static_div">
+        <img id="staticNoise" draggable=false src="../../vhs_overlays/static.gif">
+    </div>
+
     <div id="leftbar"></div>
     <div id="rightbar"></div>
     <div id='vhs_overlay_div'>
         <img id="vhs_overlay" draggable=false src="../../vhs_overlays/1.gif">
     </div>
-    <div id="static_div">
-        <img id="staticNoise" draggable=false src="../../vhs_overlays/static.gif">
-    </div>
-    <img id="face" src="../../resources/face.png" draggable="false">
-
+    <img id="face" class="glitch-img" src="../../resources/face.png" draggable=false>
+    <p id="dialogue" style="z-index: 1;"></p>
+    <img id="broken" src="../../resources/broken.jpg" style="visibility: hidden;">
+    <img id="background" src="../../resources/tv.png" style="visibility: hidden;">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="../../glitchEffectJQuery/mgGlitch.min.js"></script>
     <script>
-        document.getElementsByTagName('body')[0].style.animation = "shake 0.3s infinite linear";
+        $(".glitch-img").mgGlitch(
+        {
+			destroy : false,
+			glitch: true,
+			scale: true,
+			blend : true,
+			blendModeType : 'exclusion',
+			glitch1TimeMin : 10,
+			glitch1TimeMax : 65,
+			glitch2TimeMin : 10,
+			glitch2TimeMax : 115,
+			zIndexStart : 0
+        });
     </script>
+    <script type="module" src="./inside.js"></script>
 </body>
 </html>

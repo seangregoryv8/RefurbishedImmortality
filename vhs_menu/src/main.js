@@ -23,14 +23,14 @@ import
 import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
 
+changeInstructions(localStorage.getItem("instructions"))
 // Add error message everytime after the 3 have been selected
 // Have face continuously and slowly approach every time error appears
 // Have VCR crash after face gets close enough
 effect.rollStatic();
-changeInstructions(localStorage.getItem("instructions"))
 window.onload = function()
 {
-    sounds.play(SoundName.Hiss)
+    //sounds.play(SoundName.Hiss)
     if (stateMachine.check(TapeState.Choice))
     {
         face.height = 670;

@@ -5,7 +5,9 @@ const TapeState =
     FaceFinale: 'faceFinale',
     Choice: 'choice',
     Kill: 'kill',
-    Leave: 'leave'
+    Dead: 'dead',
+    Leave: 'leave',
+
 }
 
 export default TapeState;

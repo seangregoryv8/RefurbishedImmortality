@@ -72,7 +72,7 @@ export default class Finale
                         "...please...",
                         "..."
                     ]
-                    dialogue = document.getElementById("dialogue");
+                    let dialogue = document.getElementById("dialogue");
                     dialogue.backgroundColor = "black";
                     for (let i = 0; i < lines.length; i++)
                     {
