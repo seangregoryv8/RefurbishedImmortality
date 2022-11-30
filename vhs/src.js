@@ -13,15 +13,17 @@ function changeTV(state)
         case "on":
             tv_state = "off";
             tv.src = "./tv_off.png";
+            sounds.play(SoundName.TurnOff);
             break;
         case "off":
             tv_state = "on";
             tv.src = "./tv_on.png";
+            sounds.play(SoundName.TurnOn);
             break;
     }
 }
 
-if (stateMachine.check(TapeState.Regular))
+if (!stateMachine.check(TapeState.Choice))
 {
     changeInstructions(localStorage.getItem("instructions"))
     
@@ -82,16 +84,24 @@ else
                         tv.style.scale = 2;
                         tv.addEventListener('animationend', () => 
                         {
-                            document.location.href = "./kill/kill.html";
+                            document.location.href = "./kill/kill.html?choice=kill";
                         })
                     }, 1000)
                 }
                 else
                 {
+                    localStorage.setItem("state", "leave");
                     stateMachine.set(TapeState.Leave);
                     p.innerHTML = "LEAVE";
                     setTimeout(() => 
                     {
+                        tv.style.animation = "fadeIn 5s ease-in-out";
+                        tv.addEventListener('animationend', () => 
+                        {
+                            tv.style.opacity = 0;
+                            localStorage.setItem("state", "leave");
+                            document.location.href = "./kill/kill.html?choice=leave";
+                        })
                     }, 1000)
                 }
                 break;
@@ -102,4 +112,5 @@ else
         stateMachine.set(TapeState.Choice);
     }
 }
-changeTV("on")
+tv_state = "off";
+tv.src = "./tv_off.png";

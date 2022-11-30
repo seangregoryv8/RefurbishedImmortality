@@ -1,5 +1,6 @@
 import { randomNumber } from "./globals.js"
 
+
 let f = document.getElementById("face");
 let left = document.getElementById("leftbar")
 let right = document.getElementById("rightbar")
@@ -106,10 +107,10 @@ setTimeout(() =>
     clearInterval(rightInterval);
     clearInterval(faceInterval);
     end = true;
-    $(".glitch-img").mgGlitch(
+    /*$(".glitch-img").mgGlitch(
         {
 			destroy : true
-        });
+        });*/
     let body = document.getElementsByTagName('body')[0];
     body.removeChild(document.getElementById("static_div"));
     body.removeChild(document.getElementById("vhs_overlay_div"));
@@ -122,7 +123,25 @@ setTimeout(() =>
 
     setTimeout(() => 
     {
-        localStorage.setItem("state", "dead");
-        document.location.href = "./kill.html";
+        let bar = document.createElement('div');
+        bar.id = 'bar';
+        bar.style.position = "fixed";
+        bar.style.backgroundColor = 'white';
+        bar.style.opacity = 0;
+        bar.style.left = 0;
+        bar.style.top = 0;
+        bar.style.height = "100%";
+        bar.style.width = "100%";
+        bar.style.zIndex = 1;
+        bar.style.animation = "fadeOut 3s linear";
+        document.getElementsByTagName('body')[0].appendChild(bar);
+        bar = document.getElementById('bar');
+
+        bar.addEventListener('animationend', () => 
+        {
+            bar.style.opacity = 1;
+            localStorage.setItem("state", "dead");
+            document.location.href = "./kill.html";
+        })
     }, 3000)
 }, 10000)

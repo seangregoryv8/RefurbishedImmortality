@@ -17,6 +17,60 @@
             "name": "hiss",
             "path": "../resources/sound/hiss.mp3",
             "size": 1,
+            "volume": 0.5,
+            "loop": true
+        },
+        {
+            "name": "turnOn",
+            "path": "../resources/sound/turnOn.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "turnOff",
+            "path": "../resources/sound/turnOff.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "glitch1",
+            "path": "../resources/sound/glitch1.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "glitch2",
+            "path": "../resources/sound/glitch2.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "glitch3",
+            "path": "../resources/sound/glitch3.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "glitch4",
+            "path": "../resources/sound/glitch4.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "glitch5",
+            "path": "../resources/sound/glitch5.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "glitch6",
+            "path": "../resources/sound/glitch6.mp3",
+            "size": 1,
             "volume": 1,
             "loop": true
         }

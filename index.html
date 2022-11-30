@@ -38,6 +38,8 @@
         Press spacebar or enter to continue...
     </p>
     <script type="text/javascript">
+        let glitchAudio = new Audio(`./resources/sound/glitches/glitch${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.mp3`)
+        glitchAudio.load();
         localStorage.setItem("state", 'regular')
         document.addEventListener('keydown', (event) => 
         {
@@ -58,11 +60,16 @@
         let glitch = document.getElementsByClassName('box');
 
         let x = 0;
-        let glitchInterval = setInterval(set, 50)
+        let glitchInterval;
+        setTimeout(() => 
+        {
+            glitchInterval = setInterval(set, 50)
+        }, 2000)
 
         let randomAmount = Math.floor(Math.random() * 30) + 10;
         function set()
         {
+            glitchAudio.play();
             if (x == randomAmount)
                 clear();
             for (let i = 0; i < glitch.length; i++)
@@ -76,6 +83,10 @@
         }
         function clear()
         {
+            glitchAudio.pause();
+            glitchAudio = new Audio(`./resources/sound/glitches/glitch${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.mp3`)
+            glitchAudio.load();
+
             x = 0;
             for (let i = 0; i < glitch.length; i++)
             {
@@ -83,7 +94,7 @@
             }
             clearInterval(glitchInterval)
 
-            let t = Math.floor((Math.random() * 8000) + 1000);
+            let t = Math.floor((Math.random() * 5000) + 1000);
             //console.log(t);
             setTimeout(function() 
             {

@@ -1,5 +1,6 @@
+import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
-import { stateMachine } from "../../src/globals.js";
+import { sounds, stateMachine } from "../../src/globals.js";
 import { instructions_state } from "../../src/main.js";
 import Controls from "./enums/Controls.js";
 import
@@ -30,6 +31,10 @@ export default class Action
 
     delete()
     {
+        setTimeout(() => 
+        {
+            sounds.play(SoundName.Hiss);
+        }, 1000)
         this.stopRecording();
         visibleVideo(false);
         if (this.get() != null && !this.see(Controls.Stop))
@@ -51,6 +56,7 @@ export default class Action
             this.stay = true;
             setTimeout(() => 
             {
+                sounds.pause(SoundName.Hiss);
                 this.stay = false;
                 visibleVideo();
                 this.stopRecording();
@@ -62,6 +68,7 @@ export default class Action
 
     play()
     {
+        sounds.pause(SoundName.Hiss);
         visibleVideo();
         this.stopRecording();
         effect.rollStatic();
@@ -129,6 +136,7 @@ export default class Action
 
     escape()
     {
+        sounds.play(SoundName.Hiss);
         if (stateMachine.check(TapeState.Finale))
         {
             effect.troubleEjecting(0, false, document.getElementById("image"));

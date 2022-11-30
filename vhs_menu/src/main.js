@@ -85,6 +85,7 @@ window.onload = function()
                         document.location.href = tapes.getTape().getElementsByTagName("a")[0].href + "?chosenTape=" + tapes.getTape().id;
                         break;
                     case "Backspace":
+                        sounds.play(SoundName.TurnOff);
                         document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
                         document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
 

@@ -124,3 +124,40 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+@keyframes fadeIn
+{
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes topOut
+{
+    0%
+    {
+        top: -100%;
+    }
+    30%
+    {
+        top: -60%
+    }
+    100%
+    {
+        top: -45%;
+    }
+}
+
+@keyframes bottomOut
+{
+    0%
+    {
+        bottom: -100%;
+    }
+    30%
+    {
+        bottom: -60%
+    }
+    100%
+    {
+        bottom: -45%;
+    }
+}

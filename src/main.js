@@ -17,6 +17,9 @@ fetch('../src/config.json').then(response => response.json())
     } = response;
 
     sounds.load(soundDefinitions);
+
+    if (parent.document.URL.includes("video") || parent.document.URL.includes("menu"))
+        sounds.play(SoundName.Hiss);
 })
 
 export let instructions_state;

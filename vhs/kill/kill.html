@@ -7,14 +7,45 @@
     <title>VCR</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./animations.css">
+    <style>
+        #endDialogue
+        {
+            font-size: 12px;
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
 </head>
 <body>
-    <div id="bar"></div>
-    <div id="tv_div">
-        <img id="tv" src="../tv_off.png" draggable="false">
+    <div id="all">
+        <div id="topbar"></div>
+        <div id="bottombar"></div>
+        <div id="bar"></div>
+        <div id="tv_div">
+            <img id="tv" src="../tv_off.png" draggable="false">
+        </div>
+        <img id="punchRight" src="./punch.png" draggable="false">
+        <img id="punchLeft" src="./punch.png" draggable="false">
+        <p id="endDialogue">
+        </p>
+        <script>
+            var url = parent.document.URL;
+            if (url.indexOf('?') != -1)
+            {
+                var t = url.substring(url.indexOf('?'), url.length);
+                var r = t.substring(t.indexOf('=') + 1, t.length);
+                
+                localStorage.setItem("state", r);
+                const newURL = url.substring(0, url.indexOf('?'));
+                const nextTitle = 'icantbreatheicantbreatheicantbreatheicantbreathe';
+                const nextState = { additionalInformation: 'Updated' };
+                window.history.replaceState(nextState, nextTitle, newURL);
+            }
+        </script>
+        <script type="module" src="./src.js"></script>
     </div>
-    <script type="module" src="./src.js"></script>
-    <img id="punchRight" src="./punch.png" draggable="false">
-    <img id="punchLeft" src="./punch.png" draggable="false">
 </body>
 </html>
