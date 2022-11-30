@@ -34,45 +34,94 @@
         },
         {
             "name": "glitch1",
-            "path": "../resources/sound/glitch1.mp3",
+            "path": "../resources/sound/glitches/glitch1.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
         },
         {
             "name": "glitch2",
-            "path": "../resources/sound/glitch2.mp3",
+            "path": "../resources/sound/glitches/glitch2.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
         },
         {
             "name": "glitch3",
-            "path": "../resources/sound/glitch3.mp3",
+            "path": "../resources/sound/glitches/glitch3.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
         },
         {
             "name": "glitch4",
-            "path": "../resources/sound/glitch4.mp3",
+            "path": "../resources/sound/glitches/glitch4.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
         },
         {
             "name": "glitch5",
-            "path": "../resources/sound/glitch5.mp3",
+            "path": "../resources/sound/glitches/glitch5.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
         },
         {
             "name": "glitch6",
-            "path": "../resources/sound/glitch6.mp3",
+            "path": "../resources/sound/glitches/glitch6.mp3",
             "size": 1,
             "volume": 1,
             "loop": true
+        },
+        {
+            "name": "glitchLong",
+            "path": "../resources/sound/glitches/glitchLong.mp3",
+            "size": 1,
+            "volume": 1,
+            "loop": true
+        },
+        {
+            "name": "baby",
+            "path": "../resources/sound/baby.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "drone",
+            "path": "../resources/sound/drone.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "glass1",
+            "path": "../resources/sound/glass1.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "glass2",
+            "path": "../resources/sound/glass2.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "punch",
+            "path": "../resources/sound/punch.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "scream",
+            "path": "../resources/sound/scream.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "beep",
+            "path": "../resources/sound/beep.mp3",
+            "size": 1,
+            "volume": 1
         }
     ]
 }

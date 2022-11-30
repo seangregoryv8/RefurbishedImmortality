@@ -115,7 +115,7 @@
     </style>
 </head>
 <body>
-    <script src="./inside.js"></script>
+    <script src="./globals.js"></script>
     <div id="static_div">
         <img id="staticNoise" draggable=false src="../../vhs_overlays/static.gif">
     </div>
@@ -131,21 +131,6 @@
     <img id="background" src="../../resources/tv.png" style="visibility: hidden;">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="../../glitchEffectJQuery/mgGlitch.min.js"></script>
-    <script>
-        $(".glitch-img").mgGlitch(
-        {
-			destroy : false,
-			glitch: true,
-			scale: true,
-			blend : true,
-			blendModeType : 'exclusion',
-			glitch1TimeMin : 10,
-			glitch1TimeMax : 65,
-			glitch2TimeMin : 10,
-			glitch2TimeMax : 115,
-			zIndexStart : 0
-        });
-    </script>
     <script type="module" src="./inside.js"></script>
 </body>
 </html>

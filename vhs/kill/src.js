@@ -1,12 +1,7 @@
-import { randomNumber } from "./globals.js"
+import { randomNumber, sounds } from "./globals.js";
+import SoundName from "../../src/enums/SoundName.js";
 
 let state = localStorage.getItem("state");
-
-let audio = new Audio(`../../resources/sound/${(state == "dead") ? "baby" : "hiss"}.mp3`);
-audio.load();
-
-let off = new Audio("../../resources/sound/turnOff.mp3");
-off.load();
 
 let tv = document.getElementById("tv");
 let left = document.getElementById("punchLeft");
@@ -108,7 +103,7 @@ else
 async function load(dialogue, text)
 {
     await timer(500);
-    audio.play();
+    sounds.play((state == "dead") ? SoundName.Baby : SoundName.Hiss)
     await timer(3000);
     tv.style.animation = 'fadeOut 4.5s linear';
     tv.addEventListener('animationend', () => { tv.style.opacity = 1; });
@@ -138,8 +133,8 @@ async function load(dialogue, text)
         await timer(2000 + time);
     }
 
-    audio.pause();
-    off.play();
+    sounds.pause((state == "dead") ? SoundName.Baby : SoundName.Hiss);
+    sounds.play(SoundName.TurnOff);
     document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
     document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
 
@@ -162,8 +157,10 @@ function punch(element)
     elem.style.animation = `${punchInAnimation} 0.15s ease-in`;
     elem.addEventListener('animationend', () => 
     {
+        sounds.play(SoundName.Punch)
         punching = (element.id == "punchRight") ? "left" : "right"
         breakScreen();
+        sounds.play(`glass${randomNumber(1, 2)}`);
         if (tv.style.animation != "")
         {
             tv.style.animation = "";
@@ -214,10 +211,12 @@ function breakScreen()
 {
     if (punches == crack1)
     {
+        sounds.play(SoundName.Hiss)
         tv.src = "./tv_1.png";
     }
     else if (punches == crack2)
     {
+        sounds.play(SoundName.Drone)
         tv.src = "./tv_2.png";
     }
     else if (punches == crack3)
