@@ -1,8 +1,10 @@
+import { body } from "../../src/globals.js";
+
 export default class Effect
 {
-    damage_light = "../vhs_overlays/2.gif";
-    damage_heavy = "../vhs_overlays/1.gif";
-    staticNoise = "../vhs_overlays/static.gif"
+    damage_light = "../resources/images/vhs_overlays/2.gif";
+    damage_heavy = "../resources/images/vhs_overlays/1.gif";
+    staticNoise = "../resources/images/vhs_overlays/static.gif"
 
     constructor()
     {
@@ -52,13 +54,12 @@ export default class Effect
 
     createGlitches(amount)
     {
-        let bg = document.getElementsByTagName('body')[0];
         let count = amount;
         for (let i = 0; i < count; i++)
         {
             let glitchBox = document.createElement('div')
             glitchBox.className = 'box';
-            bg.appendChild(glitchBox);
+            body.appendChild(glitchBox);
         }
         let glitch = document.getElementsByClassName('box');
 

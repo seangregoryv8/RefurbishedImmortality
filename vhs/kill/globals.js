@@ -1,8 +1,5 @@
-export function randomNumber(min, max)
-{
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
 
+/*
 import Sounds from "../../src/lib/Sounds.js";
 export const sounds = new Sounds();
 
@@ -19,4 +16,4 @@ fetch('../../src/config.json').then(response => response.json())
     } = response;
     
     sounds.load(soundDefinitions);
-})
+})*/

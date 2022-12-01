@@ -1,13 +1,13 @@
 import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
-import { finale, sounds, stateMachine } from "../../src/globals.js";
+import { body, sounds, stateMachine } from "../../src/globals.js";
 import { instructions_state } from "../../src/main.js";
-import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
+import { action, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
 
 export default class Effect
 {
-    damage_light = "../vhs_overlays/2.gif";
-    damage_heavy = "../vhs_overlays/1.gif";
+    damage_light = "../resources/images/vhs_overlays/2.gif";
+    damage_heavy = "../resources/images/vhs_overlays/1.gif";
 
     constructor()
     {
@@ -69,12 +69,12 @@ export default class Effect
 
     blackEffectHeavy()
     {
-        BODY.style.backgroundColor = 'black';
+        body.style.backgroundColor = 'black';
         video.video.style.visibility = 'hidden';
         action.untouchable = true;
         setTimeout(function()
         {
-            BODY.style.backgroundColor = '#1e3aa4';
+            body.style.backgroundColor = '#1e3aa4';
             video.video.style.visibility = 'visible';
             action.untouchable = false;
         }, getRandomNumber(1200, 2500));
@@ -84,12 +84,12 @@ export default class Effect
     {
         if (!action.stay)
         {
-            BODY.style.backgroundColor = 'black';
+            body.style.backgroundColor = 'black';
             video.video.style.visibility = 'hidden';
             action.untouchable = true;
             setTimeout(function()
             {
-                BODY.style.backgroundColor = '#1e3aa4';
+                body.style.backgroundColor = '#1e3aa4';
                 video.video.style.visibility = 'visible';
                 action.untouchable = false;
             }, getRandomNumber(400, 1000));
@@ -102,13 +102,12 @@ export default class Effect
         setTimeout(function()
         {
             sounds.play(SoundName.GlitchLong);
-            let bg = document.getElementsByTagName('body')[0];
             let count = 20;
             for (let i = 0; i < count; i++)
             {
                 let glitchBox = document.createElement('div')
                 glitchBox.className = 'box';
-                bg.appendChild(glitchBox);
+                body.appendChild(glitchBox);
             }
             let glitch = document.getElementsByClassName('box');
     

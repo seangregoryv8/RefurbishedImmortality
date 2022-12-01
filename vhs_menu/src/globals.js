@@ -4,7 +4,9 @@ import { stateMachine } from "../../src/globals.js";
 import Effect from "./Effect.js";
 export const effect = new Effect();
 
-export const BODY = document.getElementsByTagName('body')[0]
+import Finale from "./Finale.js";
+export const finale = new Finale();
+
 export const TAPES = document.getElementById("tapes");
 export const TAPEINDEX = document.getElementById("tapeIndex");
 import Tapes from "./Tapes.js";
@@ -34,7 +36,7 @@ addEventListener('load', function()
                 }
             }
             
-            tapes = new Tapes(tapesJSON);
+            tapes = new Tapes(tapesJSON, localStorage.getItem('previousTape'));
         })
     }
 });

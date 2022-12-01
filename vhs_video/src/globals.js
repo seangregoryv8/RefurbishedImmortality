@@ -1,6 +1,5 @@
 export const DEBUG = false;
 
-export const BODY = document.getElementsByTagName('body')[0];
 export function changeCurrentTime(time)
 {
     document.getElementById("currentTime").innerHTML = time;

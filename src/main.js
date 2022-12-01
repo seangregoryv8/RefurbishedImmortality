@@ -8,19 +8,6 @@ import
 import SoundName from "./enums/SoundName.js"
 import TapeState from "./enums/TapeState.js";
 
-fetch('../src/config.json').then(response => response.json())
-.then(response => 
-{
-    const
-    {
-        sounds: soundDefinitions
-    } = response;
-
-    sounds.load(soundDefinitions);
-
-    if (parent.document.URL.includes("video") || parent.document.URL.includes("menu"))
-        sounds.play(SoundName.Hiss);
-})
 
 export let instructions_state;
 document.addEventListener('keydown', event => 

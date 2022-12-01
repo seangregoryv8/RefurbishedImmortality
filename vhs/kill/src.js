@@ -1,7 +1,6 @@
-import { randomNumber, sounds } from "./globals.js";
+import { body, randomNumber, sounds, stateMachine } from "../../src/globals.js";
 import SoundName from "../../src/enums/SoundName.js";
-
-let state = localStorage.getItem("state");
+import TapeState from "../../src/enums/TapeState.js";
 
 let tv = document.getElementById("tv");
 let left = document.getElementById("punchLeft");
@@ -18,56 +17,42 @@ let crack3 = 10;
 let shatter = 15;
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-if (localStorage.getItem("state") != "dead" && localStorage.getItem("state") != "leave")
-{
-    document.addEventListener('keydown', event => 
-    {
-        if (!keyDown)
-        {
-            keyDown = true;
-            if (event.key == " " && punchAgain)
-            {
-                punchAgain = false;
-                setTimeout(() => 
-                {
-                    punchAgain = true;
-                }, 600)
-                punches++;
-                if (punching == "right")
-                {
-                    punch(right);
-                }
-                if (punching == "left")
-                {
-                    punch(left);
-                }
-            }
-        }
-    })
-}
+let text = [];
+let dialogue = document.getElementById("endDialogue");
 
-else
+function finalPrep()
 {
-    document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
+    body.style.backgroundColor = 'white';
     tv.style.opacity = 0;
-    tv.src = (state == "dead") ? "./tv_broken.png" : tv.src;
+    tv.src = (stateMachine.check(TapeState.Dead)) ? "../../resources/images/tv_broken.png" : tv.src;
     tv.style.scale = "75%";
     tv.style.left = "30%";
     left.style.visibility = 'hidden';
     right.style.visibility = 'hidden';
 
-    let dialogue = document.getElementById("endDialogue");
-
     dialogue.innerHTML += "<br><br>"
-    let text = [];
-    if (state == "dead")
-    {
+}
+
+function addLastText()
+{
+    text.push("<br><br><br>")
+    text.push("Refurbished Immortality (Beta)<br>An interactive website by Sean Gregory<br>Thanks to everyone who helped make this possible")
+    text.push("<br><br><br>Hope you look forward to more<br>")
+    text.push("Thanks for playing...<br>")
+    text.push("End communication...")
+}
+switch (stateMachine.get())
+{
+    case TapeState.Dead:
+        finalPrep();
         text.push("Don't worry sweetheart...<br>You're safe now...<br>You can rest once again...");
         text.push("<br><br><br>");
         text.push("...Thank you...");
-    }
-    else if (state == "leave")
-    {
+        addLastText();
+        load(dialogue, text);
+        break;
+    case TapeState.Leave:
+        finalPrep();
         let static_div = document.createElement('div');
         static_div.id = 'static_div';
         
@@ -83,27 +68,47 @@ else
         staticNoise.style.width = "100%";
         
         static_div.appendChild(staticNoise);
-        document.getElementsByTagName('body')[0].appendChild(static_div);
+        body.appendChild(static_div);
         
-        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
+        body.style.backgroundColor = 'black';
         text.push("...<br>You left me...<br>Left me to their vices...<br>");
         text.push("...<br>");
         text.push("I hope that paycheck was worth it...");
-    }
-
-    text.push("<br><br><br>")
-    text.push("Refurbished Immortality (Beta)<br>An interactive website by Sean Gregory<br>Thanks to everyone who helped make this possible")
-    text.push("<br><br><br>Hope you look forward to more<br>")
-    text.push("Thanks for playing...<br>")
-    text.push("End communication...")
-
-    load(dialogue, text);
+        addLastText();
+        load(dialogue, text);
+        break;
+    default:
+        document.addEventListener('keydown', event => 
+        {
+            if (!keyDown)
+            {
+                keyDown = true;
+                if (event.key == " " && punchAgain)
+                {
+                    punchAgain = false;
+                    setTimeout(() => 
+                    {
+                        punchAgain = true;
+                    }, 600)
+                    punches++;
+                    if (punching == "right")
+                    {
+                        punch(right);
+                    }
+                    if (punching == "left")
+                    {
+                        punch(left);
+                    }
+                }
+            }
+        })
+        break;
 }
 
 async function load(dialogue, text)
 {
     await timer(500);
-    sounds.play((state == "dead") ? SoundName.Baby : SoundName.Hiss)
+    sounds.play(stateMachine.check(TapeState.Dead) ? SoundName.Baby : SoundName.Hiss)
     await timer(3000);
     tv.style.animation = 'fadeOut 4.5s linear';
     tv.addEventListener('animationend', () => { tv.style.opacity = 1; });
@@ -115,7 +120,7 @@ async function load(dialogue, text)
         let time = `${(i == 0 || i == 2 || i == 7) ? 3 : 1}.${randomNumber(1, 9)}`;
         p.style.animation = `fadeOut ${time}s linear`;
         p.style.fontSize = '14px';
-        if (state == 'leave')
+        if (stateMachine.check(TapeState.Leave))
         {
             if (i != 2)
             {
@@ -133,7 +138,7 @@ async function load(dialogue, text)
         await timer(2000 + time);
     }
 
-    sounds.pause((state == "dead") ? SoundName.Baby : SoundName.Hiss);
+    sounds.pause(stateMachine.check(TapeState.Dead) ? SoundName.Baby : SoundName.Hiss);
     sounds.play(SoundName.TurnOff);
     document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
     document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
@@ -203,7 +208,7 @@ function fade(color, type, seconds)
     bar.style.zIndex = 1;
     bar.style.animation = `fade${type} ${seconds}s linear`;
     bar.addEventListener('animationend', () => { bar.style.opacity = (type == "Out") ? 1 : 0})
-    document.getElementsByTagName('body')[0].appendChild(bar);
+    body.appendChild(bar);
 }
 
 function breakScreen()
@@ -211,16 +216,16 @@ function breakScreen()
     if (punches == crack1)
     {
         sounds.play(SoundName.Hiss);
-        tv.src = "./tv_1.png";
+        tv.src = "../../resources/images/tv_1.png";
     }
     else if (punches == crack2)
     {
         sounds.play(SoundName.Drone);
-        tv.src = "./tv_2.png";
+        tv.src = "../../resources/images/tv_2.png";
     }
     else if (punches == crack3)
     {
-        tv.src = "./tv_3.png";
+        tv.src = "../../resources/images/tv_3.png";
     }
 }
 

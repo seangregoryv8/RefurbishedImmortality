@@ -3,7 +3,8 @@ import
     effect,
     face,
     tapes,
-    error
+    error,
+    finale
 } from "./globals.js";
 
 import
@@ -14,7 +15,6 @@ import
 
 import
 {
-    finale,
     sounds,
     stateMachine
 } from "../../src/globals.js";

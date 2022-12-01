@@ -3,24 +3,20 @@ import TapeState from "../src/enums/TapeState.js";
 import { min_end, sounds, stateMachine } from "../src/globals.js";
 import { changeInstructions, instructions_state } from "../src/main.js";
 import { fadeInBlue, fadeOutBlue } from "./globals.js";
+import Command from "../src/enums/Command.js";
 
 let tv = document.getElementById("tv");
 let tv_state;
+
+/**
+ * 
+ * @param {Command} state 
+ */
 function changeTV(state)
 {
-    switch (state)
-    {
-        case "on":
-            tv_state = "off";
-            tv.src = "./tv_off.png";
-            sounds.play(SoundName.TurnOff);
-            break;
-        case "off":
-            tv_state = "on";
-            tv.src = "./tv_on.png";
-            sounds.play(SoundName.TurnOn);
-            break;
-    }
+    tv_state = (state == Command.Off) ? Command.On : Command.Off;
+    tv.src = `../resources/images/tv_${tv_state}.png`;
+    sounds.play((tv_state == Command.Off) ? SoundName.TurnOff : SoundName.TurnOn)
 }
 
 if (!stateMachine.check(TapeState.Choice))
@@ -38,7 +34,7 @@ if (!stateMachine.check(TapeState.Choice))
                 changeTV(tv_state);
                 break;
             case "Enter":
-                if (tv_state == "on")
+                if (tv_state == Command.On)
                 {
                     fadeOutBlue();
                     tv.style.animation = "zoomIn 1s linear";
@@ -58,8 +54,8 @@ else
     let p = document.getElementsByTagName('p')[0]
     let i = document.getElementById("instructions_img");
     p.innerHTML = "Choose"
-    let kill = "../resources/instructions-kill.png";
-    let leave = "../resources/instructions-leave.png";
+    let kill = "../resources/images/instructions-kill.png";
+    let leave = "../resources/images/instructions-leave.png";
     i.src = kill;
     document.addEventListener('keydown', event => 
     {
@@ -94,7 +90,6 @@ else
                 }
                 else
                 {
-                    localStorage.setItem("state", "leave");
                     stateMachine.set(TapeState.Leave);
                     p.innerHTML = "LEAVE";
                     setTimeout(() => 
@@ -103,7 +98,6 @@ else
                         tv.addEventListener('animationend', () => 
                         {
                             tv.style.opacity = 0;
-                            localStorage.setItem("state", "leave");
                             document.location.href = "./kill/kill.html?choice=leave";
                         })
                     }, 1000)
@@ -116,5 +110,6 @@ else
         stateMachine.set(TapeState.Choice);
     }
 }
-tv_state = "off";
-tv.src = "./tv_off.png";
+
+tv_state = Command.Off;
+tv.src = "../resources/images/tv_off.png";

@@ -2,36 +2,41 @@ import { TAPEINDEX, TAPES } from "./globals.js";
 
 export default class Tapes
 {
-    formList(json)
+    previouslySelectedTape = null;
+    formList(json, current)
     {
         let ul = document.getElementById("tapes");
 
         for (let i = 0; i < json.length; i++)
         {
             let tape = json[i];
+            if (tape.includes(current))
+            {
+                this.previouslySelectedTape = i;
+            }
             let li = document.createElement('li');
             li.id = tape;
             li.draggable = false;
             let a = document.createElement('a');
             a.draggable = false;
+            
             if (tape.includes("finale"))
-            {
                 a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf("."));
-            }
             else
                 a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf(".mp4"));
-            //console.log(a.innerHTML);
             li.appendChild(a);
             ul.appendChild(li);
         }
+        if (this.previouslySelectedTape == null)
+            this.previouslySelectedTape = 0;
     }
-    constructor(json)
+    constructor(json, current)
     {
-        this.formList(json)
+        this.formList(json, current)
         this.maxTapesPerPage = 5;
-        this.currentTape = 0;
+        this.currentTape = this.previouslySelectedTape % 5;
         this.index = TAPEINDEX;
-        this.currentIndex = 0;
+        this.currentIndex = (this.previouslySelectedTape / 5).toFixed(0);
         let allTapes = TAPES.children;
         this.all = [];
         let tapeIndex = 0;
@@ -53,10 +58,15 @@ export default class Tapes
             this.all[this.indices][tapeIndex] = tape;
             tapeIndex++;
         }
-        this.currentDisplay = this.all[0];
+        this.currentDisplay = this.all[this.currentIndex];
 
         this.activate();
         this.changeTapes();
+    }
+
+    goToTape()
+    {
+
     }
 
     getTape()

@@ -1,5 +1,6 @@
 import SoundName from "../../src/enums/SoundName.js";
-import { randomNumber, sounds } from "./globals.js";
+import TapeState from "../../src/enums/TapeState.js";
+import { body, randomNumber, sounds, stateMachine } from "../../src/globals.js";
 
 setTimeout(() =>
 {
@@ -122,7 +123,7 @@ setTimeout(() =>
         
         setTimeout(() => 
         {
-            
+            stateMachine.set(TapeState.Dead);
             clearInterval(leftInterval);
             clearInterval(rightInterval);
             clearInterval(faceInterval);
@@ -131,7 +132,6 @@ setTimeout(() =>
                 {
                     destroy : true
                 });
-            let body = document.getElementsByTagName('body')[0];
             body.removeChild(document.getElementById("static_div"));
             body.removeChild(document.getElementById("vhs_overlay_div"));
             body.style.backgroundColor = 'white';
@@ -158,13 +158,12 @@ setTimeout(() =>
                 bar.style.width = "100%";
                 bar.style.zIndex = 1;
                 bar.style.animation = "fadeOut 3s linear";
-                document.getElementsByTagName('body')[0].appendChild(bar);
+                body.appendChild(bar);
                 bar = document.getElementById('bar');
         
                 bar.addEventListener('animationend', () => 
                 {
                     bar.style.opacity = 1;
-                    localStorage.setItem("state", "dead");
                     document.location.href = "./kill.html";
                 })
             }, 3000)
