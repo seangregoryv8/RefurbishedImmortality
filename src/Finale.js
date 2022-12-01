@@ -95,8 +95,8 @@ export default class Finale
                         "...i don't remember you...",
                         "...please... save me...",
                         "let me go...",
-                        "i wanna go to heaven",
-                        "...see my mommy again...",
+                        "i wanna go to the afterlife",
+                        "...see my family again...",
                         "...please...",
                         "..."
                     ]
