@@ -60,9 +60,6 @@ window.onload = function()
                 keyDown = true;
                 switch (event.key)
                 {
-                    case "l":
-                        stateMachine.set(stateMachine.check(TapeState.Finale) ? TapeState.Regular : TapeState.Finale)
-                        document.location.reload();
                     case "ArrowUp":
                         sounds.play(SoundName.Select);
                         tapes.up();

@@ -136,6 +136,10 @@ export default class Action
 
     escape()
     {
+        if (document.title == "decision")
+        {
+            stateMachine.set(TapeState.Finale);
+        }
         sounds.play(SoundName.Hiss);
         if (stateMachine.check(TapeState.Finale))
         {
