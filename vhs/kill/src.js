@@ -147,7 +147,6 @@ async function load(dialogue, text)
     });
 }
 
-
 function punch(element)
 {
     let elem = element;
@@ -211,12 +210,12 @@ function breakScreen()
 {
     if (punches == crack1)
     {
-        sounds.play(SoundName.Hiss)
+        sounds.play(SoundName.Hiss);
         tv.src = "./tv_1.png";
     }
     else if (punches == crack2)
     {
-        sounds.play(SoundName.Drone)
+        sounds.play(SoundName.Drone);
         tv.src = "./tv_2.png";
     }
     else if (punches == crack3)

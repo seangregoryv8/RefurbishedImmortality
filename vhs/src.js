@@ -54,23 +54,27 @@ if (!stateMachine.check(TapeState.Choice))
 }
 else
 {
+    setTimeout(() => { sounds.play(SoundName.Drone); }, 500)
     let p = document.getElementsByTagName('p')[0]
     let i = document.getElementById("instructions_img");
     p.innerHTML = "Choose"
     let kill = "../resources/instructions-kill.png";
-    let leave = "../resources/instructions-leave.png"
+    let leave = "../resources/instructions-leave.png";
     i.src = kill;
     document.addEventListener('keydown', event => 
     {
         switch (event.key)
         {
             case "ArrowUp":
+                sounds.play(SoundName.Select);
                 i.src = kill;
                 break;
             case "ArrowDown":
+                sounds.play(SoundName.Select);
                 i.src = leave;
                 break;
             case "Enter":
+                sounds.pause(SoundName.Drone);
                 sounds.play(SoundName.Paper);
                 i.style.animation = "putAway 0.3s ease-in";
                 i.style.bottom = min_end + 'px';

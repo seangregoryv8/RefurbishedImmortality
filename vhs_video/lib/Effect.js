@@ -1,5 +1,6 @@
+import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
-import { finale, stateMachine } from "../../src/globals.js";
+import { finale, sounds, stateMachine } from "../../src/globals.js";
 import { instructions_state } from "../../src/main.js";
 import { action, BODY, changeControl, DEBUG, getRandomNumber, video } from "../src/globals.js";
 
@@ -100,6 +101,7 @@ export default class Effect
         changeControl("Trouble Ejecting");
         setTimeout(function()
         {
+            sounds.play(SoundName.GlitchLong);
             let bg = document.getElementsByTagName('body')[0];
             let count = 20;
             for (let i = 0; i < count; i++)

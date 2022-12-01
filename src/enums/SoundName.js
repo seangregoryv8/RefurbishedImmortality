@@ -13,12 +13,14 @@ const SoundName =
     Glitch6: 'glitch6',
     GlitchLong: 'glitchLong',
     Baby: 'baby',
-    Drone: 'drone',
+    Drone: 'drone1',
+    Drone2: 'drone2',
     Glass1: 'glass1',
     Glass2: 'glass2',
     Punch: 'punch',
     Scream: 'scream',
-    Beep: "beep"
+    Beep: "beep",
+    Error: "error"
 }
 
 export default SoundName;

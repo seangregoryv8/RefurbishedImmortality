@@ -103,6 +103,7 @@ window.onload = function()
         else
         {
             error.style.visibility = "visible";
+            sounds.play(SoundName.Error);
             error.style.left = Math.floor(Math.random() * 100) + 'vw';
             error.style.top = Math.floor(Math.random() * 100) + 'vh';
             finale.increaseFace();
@@ -112,7 +113,7 @@ window.onload = function()
                 {
                     error.style.left = Math.floor(Math.random() * 100) + 'vw';
                     error.style.top = Math.floor(Math.random() * 100) + 'vh';
-                }, 50);
+                }, 100);
                 
             }, 4000)
         }
@@ -127,8 +128,6 @@ window.onbeforeunload = function()
 {
     localStorage.setItem("finaleTapes", JSON.stringify(finale.tapes))
 }
-
-//if (localStorage.getItem('previousTape'))
 
 // Get the ul
 // Run the php script

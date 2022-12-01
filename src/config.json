@@ -17,7 +17,7 @@
             "name": "hiss",
             "path": "../resources/sound/hiss.mp3",
             "size": 1,
-            "volume": 0.5,
+            "volume": 0.8,
             "loop": true
         },
         {
@@ -88,8 +88,14 @@
             "volume": 1
         },
         {
-            "name": "drone",
+            "name": "drone1",
             "path": "../resources/sound/drone.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "drone2",
+            "path": "../resources/sound/drone2.mp3",
             "size": 1,
             "volume": 1
         },
@@ -120,6 +126,12 @@
         {
             "name": "beep",
             "path": "../resources/sound/beep.mp3",
+            "size": 1,
+            "volume": 1
+        },
+        {
+            "name": "error",
+            "path": "../resources/sound/error.mp3",
             "size": 1,
             "volume": 1
         }

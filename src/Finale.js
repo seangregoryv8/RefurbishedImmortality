@@ -1,7 +1,8 @@
 import { BODY, effect, face } from "../vhs_menu/src/globals.js";
 import TapeState from "../src/enums/TapeState.js";
 import { instructions_state } from "./main.js";
-import { stateMachine } from "./globals.js";
+import { sounds, stateMachine } from "./globals.js";
+import SoundName from "./enums/SoundName.js";
 
 export default class Finale
 {
@@ -23,7 +24,7 @@ export default class Finale
         {
             this.error = true;
             face.style.visibility = 'visible';
-            this.faceInterval = setInterval(this.increaseFace(), 600)
+            this.faceInterval = setInterval(() => { this.increaseFace() }, 600)
         }
         BODY.style.backgroundColor = "#12266d";
         document.getElementById("title").innerHTML = "H E L P M E";
@@ -31,8 +32,33 @@ export default class Finale
         effect.none();
         effect.createStatic(amountOfTrue);
     }
+    
+    timer = ms => new Promise(res => setTimeout(res, ms));
 
-    increaseFace()
+    async speak(lines)
+    {
+        let dialogue = document.getElementById("dialogue");
+        dialogue.backgroundColor = "black";
+        for (let i = 0; i < lines.length; i++)
+        {
+            dialogue.innerHTML = lines[i];
+            await this.timer(3000);
+        }
+        await this.timer(2000);
+        document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
+        document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
+
+        document.getElementById("topbar").style.top = 0;
+        document.getElementById("bottombar").style.bottom = 0;
+        document.getElementById("topbar").addEventListener('animationend', function() 
+        {
+            stateMachine.set(TapeState.Choice);
+            localStorage.setItem("instructions", instructions_state);
+            document.location.href = "../vhs/tv.html";
+        });
+    }
+
+    async increaseFace()
     {
         face.height += 1.75 * this.exp;
         this.exp += 1;
@@ -50,11 +76,13 @@ export default class Finale
                 document.getElementById('staticNoise').style.animation = "fadeOut 2s linear";
                 document.getElementById('vhs_overlay_div').style.animation = "fadeOut 2s linear";
                 document.getElementById("tapes").style.animation = "fadeOutAll 2s linear";
+                document.getElementById("title").style.animation = "fadeOut 2s linear";
                 document.getElementById('staticNoise').addEventListener('animationend', () =>
                 {
                     document.getElementById('staticNoise').style.opacity = 0.1;
                     document.getElementById('vhs_overlay_div').style.opacity = 0;
                     document.getElementById("tapes").style.opacity = 0;
+                    document.getElementById('title').style.opacity = 0;
                 });
 
                 setTimeout(() => 
@@ -72,29 +100,7 @@ export default class Finale
                         "...please...",
                         "..."
                     ]
-                    let dialogue = document.getElementById("dialogue");
-                    dialogue.backgroundColor = "black";
-                    for (let i = 0; i < lines.length; i++)
-                    {
-                        setTimeout(function() 
-                        {
-                            dialogue.innerHTML = lines[i];
-                        }, 3000 * i);
-                    }
-                    setTimeout(() => 
-                    {
-                        document.getElementById("topbar").style.animation = "topOut 1.2s ease-out";
-                        document.getElementById("bottombar").style.animation = "bottomOut 1.2s ease-out";
-
-                        document.getElementById("topbar").style.top = 0;
-                        document.getElementById("bottombar").style.bottom = 0;
-                        document.getElementById("topbar").addEventListener('animationend', function() 
-                        {
-                            stateMachine.set(TapeState.Choice);
-                            localStorage.setItem("instructions", instructions_state);
-                            document.location.href = "../vhs/tv.html";
-                        });
-                    }, 3000 * (lines.length + 1))
+                    this.speak(lines);
                 }, 5000)
             }, 3000)
         }

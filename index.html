@@ -15,9 +15,14 @@
         {
             margin: 10px;
         }
-        #vhs_overlay
+        #text_overlay
         {
-            background-image: url(./vhs_overlays/1.gif);
+            position: absolute;
+            left: 9%;
+            top: 50%;
+            width: 82%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
     </style>
 </head>
@@ -25,9 +30,9 @@
     <div id="leftbar"></div>
     <div id="rightbar"></div>
     <div id='vhs_overlay_div'>
-        <img id="vhs_overlay" draggable=false>
+        <img id="vhs_overlay" draggable=false src="./vhs_overlays/2.gif">
     </div>
-    <p id="vhs_overlay">
+    <p id="text_overlay">
         For optimal immersive experience, please refrain from using the browser arrow keys or the refresh button...
         <br>
         Use keyboard arrows to navigate. Instructions can be viewed on the bottom right...
@@ -38,6 +43,7 @@
         Press spacebar or enter to continue...
     </p>
     <script type="text/javascript">
+        localStorage.clear();
         let glitchAudio = new Audio(`./resources/sound/glitches/glitch${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.mp3`)
         glitchAudio.load();
         localStorage.setItem("state", 'regular')
