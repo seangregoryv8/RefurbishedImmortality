@@ -15,12 +15,9 @@ export const sounds = new Sounds();
 import StateMachine from "./StateMachine.js";
 export const stateMachine = new StateMachine();
 
-export let tapesJSON = {};
-
 fetch(`../${parent.document.URL.includes("kill") ? "../" : ""}src/config.json`).then(response => response.json())
 .then(response => 
 {
-    tapesJSON = response.tapes;
     if (parent.document.URL.includes("kill"))
     {
         for (let i = 0; i < response.sounds.length; i++)

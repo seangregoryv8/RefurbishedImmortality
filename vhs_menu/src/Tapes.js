@@ -21,7 +21,6 @@ export default class Tapes
             a.draggable = false;
             
             tape = tape.substring(tape.lastIndexOf("/"), tape.length);
-            console.log(tape);
             if (!tape.includes(".mp4"))
                 a.innerHTML = tape.substring(1, tape.indexOf("."));
             else
