@@ -21,10 +21,11 @@ export default class Tapes
             a.draggable = false;
             
             tape = tape.substring(tape.lastIndexOf("/"), tape.length);
-            if (tape.includes("finale"))
-                a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf("."));
+            console.log(tape);
+            if (!tape.includes(".mp4"))
+                a.innerHTML = tape.substring(1, tape.indexOf("."));
             else
-                a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf(".mp4"));
+                a.innerHTML = tape.substring(1, tape.indexOf(".mp4"));
             li.appendChild(a);
             ul.appendChild(li);
         }
