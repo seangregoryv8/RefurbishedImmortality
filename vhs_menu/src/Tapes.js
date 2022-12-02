@@ -20,6 +20,7 @@ export default class Tapes
             let a = document.createElement('a');
             a.draggable = false;
             
+            tape = tape.substring(tape.lastIndexOf("/"), tape.length);
             if (tape.includes("finale"))
                 a.innerHTML = tape.substring(tape.indexOf("/") + 1, tape.indexOf("."));
             else

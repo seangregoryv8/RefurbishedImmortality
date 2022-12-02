@@ -15,14 +15,14 @@ addEventListener('load', function()
 {
     if (window.location.href.includes("vhs_menu"))
     {
-        fetch("../getTapes.php")
+        fetch("../src/config.json")
         .then(response => response.json())
         .then(body => 
         {
             let tapesJSON = [];
-            for (let i = 0; i < body.length; i++)
+            for (let i = 0; i < body.tapes.length; i++)
             {
-                let t = body[i].replaceAll("\\", "/");
+                let t = body.tapes[i].path.replaceAll("\\", "/");
                 t = t.substring(8, t.length);
                 if (stateMachine.check(TapeState.Finale))
                 {

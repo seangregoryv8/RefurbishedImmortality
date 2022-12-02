@@ -1,4 +1,43 @@
 {
+    "tapes":
+    [
+        {
+            "name": "an_idea",
+            "path": "../tapes\\file1\\an_idea.mp4"
+        },
+        {
+            "name": "a_team",
+            "path": "../tapes\\file2\\a_team.mp4"
+        },
+        {
+            "name": "back_end",
+            "path": "../tapes\\file2\\back_end.mp4"
+        },
+        {
+            "name": "mistake",
+            "path": "../tapes\\file2\\mistake.mp4"
+        },
+        {
+            "name": "the_harvest",
+            "path": "../tapes\\file2\\the_harvest.mp4"
+        },
+        {
+            "name": "decision",
+            "path": "../tapes\\file4\\decision.mp4"
+        },
+        {
+            "name": "brain",
+            "path": "../tapes\\finale\\brain.jpg"
+        },
+        {
+            "name": "eyes",
+            "path": "../tapes\\finale\\eyes.gif"
+        },
+        {
+            "name": "heart",
+            "path": "../tapes\\finale\\heart.gif"
+        }
+    ],
     "sounds":
     [
         {

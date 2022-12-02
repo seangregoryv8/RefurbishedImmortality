@@ -69,8 +69,8 @@
         </p>
     </div>
     
-    <script type="text/javascript">
-        localStorage.clear();
+    <script>
+        
         let glitchAudio = new Audio(`./resources/sound/glitches/glitch${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.mp3`)
         glitchAudio.load();
         localStorage.setItem("state", 'regular')
