@@ -28,6 +28,13 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
+        #github
+        {
+            position: absolute;
+            bottom: 30px;
+            left: 10%;
+        }
+
         #email
         {
             position: absolute;
@@ -35,10 +42,11 @@
             left: 10%;
         }
 
-        #email p
+        #email p, #github a
         {
             text-align: center;
             font-size: 16px;
+            color: green;
         }
     </style>
 </head>
@@ -63,6 +71,9 @@
         Press spacebar or enter to continue...
         <br>
     </p>
+    <div id="github" onclick="javascript: window.location.href = 'https://seangregoryv8.github.io';">
+        <a href="https://seangregoryv8.github.io">Check out other projects on my GitHub</a>
+    </div>
     <div id="email" onclick="javascript: window.location.href = 'mailto:seangregoryv8@gmail.com';">
         <p>
             Let me know what you think by emailing me at seangregoryv8@gmail.com
