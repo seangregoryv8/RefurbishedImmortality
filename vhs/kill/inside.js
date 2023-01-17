@@ -1,6 +1,6 @@
 import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
-import { body, randomNumber, sounds, stateMachine } from "../../src/globals.js";
+import { body, fadeToBlack, randomNumber, sounds, stateMachine } from "../../src/globals.js";
 
 setTimeout(() =>
 {
@@ -147,25 +147,7 @@ setTimeout(() =>
         
             setTimeout(() => 
             {
-                let bar = document.createElement('div');
-                bar.id = 'bar';
-                bar.style.position = "fixed";
-                bar.style.backgroundColor = 'white';
-                bar.style.opacity = 0;
-                bar.style.left = 0;
-                bar.style.top = 0;
-                bar.style.height = "100%";
-                bar.style.width = "100%";
-                bar.style.zIndex = 1;
-                bar.style.animation = "fadeOut 3s linear";
-                body.appendChild(bar);
-                bar = document.getElementById('bar');
-        
-                bar.addEventListener('animationend', () => 
-                {
-                    bar.style.opacity = 1;
-                    document.location.href = "./kill.html";
-                })
+                fadeToBlack('./kill.html');
             }, 3000)
         }, 10000)
 }, 3000);

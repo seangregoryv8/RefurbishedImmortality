@@ -17,3 +17,8 @@ fetch('../../src/config.json').then(response => response.json())
     
     sounds.load(soundDefinitions);
 })*/
+
+
+/*
+How to add keyframes dynamically:
+*/
