@@ -104,8 +104,8 @@ export default class Action
 
         if (!this.see(Controls.Rewind))
         {
-            video.rewind();
             this.set(Controls.Rewind);
+            video.rewind();
         }
         else
         {
