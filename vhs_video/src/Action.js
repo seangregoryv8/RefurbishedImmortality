@@ -11,6 +11,7 @@ import
     changeVolume,
     currentTime,
     effect,
+    hide,
     video,
     visibleVideo
 } from "./globals.js";
@@ -148,11 +149,11 @@ export default class Action
         if (!this.stay)
         {
             this.untouchable = true;
-            document.getElementById("volume").style.visibility = "hidden";
-            document.getElementById("mainVideo").style.visibility = "hidden";
-            document.getElementById("currentTime").style.visibility = "hidden";
-            document.getElementById("currentDate").style.visibility = "hidden";
-            document.getElementById("time").style.visibility = "hidden";
+            hide("volume");
+            hide("mainVideo");
+            hide("currentTime");
+            hide("currentDate");
+            hide("time");
             this.stopRecording();
             this.set(Controls.Eject);
             video.video.pause();

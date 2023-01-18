@@ -1,6 +1,6 @@
 import Controls from "./enums/Controls.js";
 import Speed from "./enums/Speed.js";
-import { action, changeControl, currentTime, effect } from "./globals.js";
+import { action, changeControl, currentTime, effect, hide, show } from "./globals.js";
 
 /**
  * This controls everything related to the current video playing
@@ -15,6 +15,7 @@ export default class Video
     constructor(video)
     {
         this.video = video;
+        this.currentInterval = null;
     }
 
     // The following two get the videos playbackRate, aka how fast the video is playing.
@@ -69,6 +70,7 @@ export default class Video
      */
     playPause()
     {
+        clearInterval(this.currentInterval);
         if (!action.stay)
         {
             // Step 2: Save the video time when you pause
@@ -100,16 +102,24 @@ export default class Video
     // This sets the new speed to a reverse rate (Doesn't work yet)
     rewind()
     {
-        effect.blackEffectHeavy();
+        action.stay = true;
         this.video.pause();
         currentTime.updatePaused();
         setTimeout(() => 
         {
-            this.setTime(this.video.currentTime < 5 ? 0 : this.getTime() - 5);
-            this.playPause();
-            action.set(Controls.Play);
-            changeControl(action.symbol);
-        }, 2500)
+            action.stay = false;
+            this.currentInterval = setInterval(() => 
+            {
+                this.setTime(this.video.currentTime < 1 ? 0 : this.getTime() - 1);
+                currentTime.changeSeconds(this.getTime());
+                if (this.getTime() == 0)
+                {
+                    this.playPause();
+                    action.set(Controls.Play);
+                    changeControl(action.symbol);
+                }
+            }, 500);
+        }, 1500)
         //this.setSpeed(Speed.Reverse);
     }
 

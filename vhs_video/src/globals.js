@@ -24,6 +24,16 @@ export function changeVolume(amount)
     document.getElementById("volumeLevel").innerHTML = vol;
 }
 
+export function hide(element)
+{
+    document.getElementById(element).style.visibility = "hidden";
+}
+
+export function show(element)
+{
+    document.getElementById(element).style.visibility = "visible";
+}
+
 export function visibleVideo(visible = true)
 {
     document.getElementById("mainVideo").style.visibility = visible ? "visible" : "hidden";
