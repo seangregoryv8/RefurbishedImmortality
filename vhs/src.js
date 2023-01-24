@@ -89,12 +89,7 @@ else
                     p.innerHTML = "LEAVE";
                     setTimeout(() => 
                     {
-                        tv.style.animation = "fadeIn 5s ease-in-out";
-                        tv.addEventListener('animationend', () => 
-                        {
-                            tv.style.opacity = 0;
-                            document.location.href = "./kill/kill.html?choice=leave";
-                        })
+                        fade("out", "black", 5, "./kill/kill.html?choice=leave");
                     }, 1000)
                 }
                 break;

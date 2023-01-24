@@ -58,7 +58,8 @@ switch (stateMachine.get())
         
         let staticNoise = document.createElement('img');
         staticNoise.id = 'staticNoise';
-        staticNoise.src = "../../vhs_overlays/static.gif";
+        staticNoise.src = "../../resources/images/vhs_overlays/static.gif";
+        console.log(staticNoise.src)
         staticNoise.draggable = false;
         staticNoise.style.opacity = 0.7;
         staticNoise.style.position = "absolute";
