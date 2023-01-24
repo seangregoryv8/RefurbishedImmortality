@@ -83,7 +83,7 @@ switch (stateMachine.get())
             if (!keyDown)
             {
                 keyDown = true;
-                if (event.key == " " && punchAgain)
+                if (punchAgain)
                 {
                     punchAgain = false;
                     setTimeout(() => 

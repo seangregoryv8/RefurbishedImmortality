@@ -97,7 +97,7 @@ window.onload = function()
                 }
             }
         }
-        else
+        else if (!stateMachine.check(TapeState.FaceFinale))
         {
             error.style.visibility = "visible";
             sounds.play(SoundName.Error);
