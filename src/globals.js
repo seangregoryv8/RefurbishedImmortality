@@ -30,7 +30,6 @@ export function fade(type, color, time, newLocation = null)
     bar.style.opacity = type == "out" ? 0 : 1;
     bar.style.backgroundColor = color;
     body.appendChild(bar);
-    console.log(time);
     bar.style.animation = `fade ${time}s linear`;
 
     bar = document.getElementById("bar");

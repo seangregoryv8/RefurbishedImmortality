@@ -27,7 +27,6 @@ document.addEventListener('keydown', event =>
 export function changeInstructions(state)
 {
     instructions_state = state ?? "off";
-    console.log(instructions_state)
     switch (state)
     {
         case "on":
