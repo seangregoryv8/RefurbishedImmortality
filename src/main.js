@@ -8,7 +8,6 @@ import
 import SoundName from "./enums/SoundName.js"
 import TapeState from "./enums/TapeState.js";
 
-
 export let instructions_state;
 document.addEventListener('keydown', event => 
 {
@@ -28,6 +27,7 @@ document.addEventListener('keydown', event =>
 export function changeInstructions(state)
 {
     instructions_state = state ?? "off";
+    console.log(instructions_state)
     switch (state)
     {
         case "on":

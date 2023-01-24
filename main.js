@@ -1,14 +1,14 @@
-import { fadeToBlack } from "./src/globals.js";
+import { fade, randomNumber } from "./src/globals.js";
 
 localStorage.clear();
-let glitchAudio = new Audio(`./resources/sound/glitches/glitch${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.mp3`)
+let glitchAudio = new Audio(`./resources/sound/glitches/glitch${randomNumber(1, 6)}.mp3`)
 glitchAudio.load();
 localStorage.setItem("state", 'regular')
 document.addEventListener('keydown', (event) => 
 {
     if (event.key == "Enter" || event.key == " ")
     {
-        fadeToBlack("./vhs/tv.html");
+        fade("out", "black", 2, "./vhs/tv.html");
     }
 })
 
