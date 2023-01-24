@@ -26,6 +26,7 @@ export function fade(type, color, time, newLocation = null)
     bar.style.left = 0;
     bar.style.height = "100%";
     bar.style.width = "100%";
+    bar.style.zIndex = 1;
     bar.style.opacity = type == "out" ? 0 : 1;
     bar.style.backgroundColor = color;
     body.appendChild(bar);

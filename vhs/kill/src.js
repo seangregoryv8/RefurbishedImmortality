@@ -1,4 +1,4 @@
-import { body, randomNumber, sounds, stateMachine } from "../../src/globals.js";
+import { body, fade, randomNumber, sounds, stateMachine } from "../../src/globals.js";
 import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
 
@@ -172,12 +172,8 @@ function punch(element)
         elem.style.animation = `${punchOutAnimation} 0.6s ease-out`;
         if (punches >= shatter)
         {
-            fade('black', 'Out', 1.2);
-            tv.style.animation = "zoomIn 1.2s linear";
-            tv.addEventListener('animationend', () => 
-            {
-                document.location.href = "./killInside.html";
-            });
+            fade("out", "black", 1.5, "./killInside.html")
+            tv.style.animation = "zoomIn 1.5s linear";
         }
         else
         {
@@ -192,23 +188,6 @@ function punch(element)
             })
         }
     })
-}
-
-function fade(color, type, seconds)
-{
-    let bar = document.createElement('div');
-    bar.id = 'bar';
-    bar.style.position = "fixed";
-    bar.style.backgroundColor = color;
-    bar.style.opacity = 0;
-    bar.style.left = 0;
-    bar.style.top = 0;
-    bar.style.height = "100%";
-    bar.style.width = "100%";
-    bar.style.zIndex = 1;
-    bar.style.animation = `fade${type} ${seconds}s linear`;
-    bar.addEventListener('animationend', () => { bar.style.opacity = (type == "Out") ? 1 : 0})
-    body.appendChild(bar);
 }
 
 function breakScreen()
