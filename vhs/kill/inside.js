@@ -1,6 +1,6 @@
 import SoundName from "../../src/enums/SoundName.js";
 import TapeState from "../../src/enums/TapeState.js";
-import { body, fadeToBlack, randomNumber, sounds, stateMachine } from "../../src/globals.js";
+import { body, fade, randomNumber, sounds, stateMachine } from "../../src/globals.js";
 
 setTimeout(() =>
 {
@@ -144,10 +144,10 @@ setTimeout(() =>
                 document.getElementById("background").style.visibility = "visible";
                 document.getElementById("broken").style.visibility = "visible";
             }, 70)
-        
+            
             setTimeout(() => 
             {
-                fadeToBlack('./kill.html');
+                fade("out", "white", 2, './kill.html')
             }, 3000)
         }, 10000)
 }, 3000);

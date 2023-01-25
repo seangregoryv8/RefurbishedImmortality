@@ -18,8 +18,6 @@ export default class Video
         this.currentInterval = null;
     }
 
-    // The following two get the videos playbackRate, aka how fast the video is playing.
-    // I am currently unable to make the video play with negative playbackRate, aka in reverse.
     getSpeed() { return this.video.playbackRate; }
     setSpeed(speed) { this.video.playbackRate = speed; }
 

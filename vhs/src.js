@@ -1,8 +1,7 @@
 import SoundName from "../src/enums/SoundName.js";
 import TapeState from "../src/enums/TapeState.js";
-import { min_end, sounds, stateMachine } from "../src/globals.js";
+import { min_end, sounds, stateMachine, fade } from "../src/globals.js";
 import { changeInstructions, instructions_state } from "../src/main.js";
-import { fadeInBlue, fadeOutBlue } from "./globals.js";
 import Command from "../src/enums/Command.js";
 
 let tv = document.getElementById("tv");
@@ -23,8 +22,8 @@ if (!stateMachine.check(TapeState.Choice))
 {
     changeInstructions(localStorage.getItem("instructions"))
     
-    tv.style.animation = "zoomOut 1.2s ease-out";
-    fadeInBlue();
+    tv.style.animation = "zoomOut 2s ease-out";
+    fade("in", "black", 2);
 
     document.addEventListener('keydown', event => 
     {
@@ -36,13 +35,9 @@ if (!stateMachine.check(TapeState.Choice))
             case "Enter":
                 if (tv_state == Command.On)
                 {
-                    fadeOutBlue();
-                    tv.style.animation = "zoomIn 1s linear";
-                    tv.addEventListener('animationend', () => 
-                    {
-                        localStorage.setItem("instructions", instructions_state)
-                        document.location.href = "../vhs_menu/menu.html";
-                    });
+                    tv.style.animation = "zoomIn 2s linear";
+                    localStorage.setItem("instructions", instructions_state)
+                    fade("out", "#1e3aa4", 2, "../vhs_menu/menu.html");
                 }
                 break;
         }
@@ -94,12 +89,7 @@ else
                     p.innerHTML = "LEAVE";
                     setTimeout(() => 
                     {
-                        tv.style.animation = "fadeIn 5s ease-in-out";
-                        tv.addEventListener('animationend', () => 
-                        {
-                            tv.style.opacity = 0;
-                            document.location.href = "./kill/kill.html?choice=leave";
-                        })
+                        fade("out", "black", 5, "./kill/kill.html?choice=leave");
                     }, 1000)
                 }
                 break;

@@ -178,6 +178,10 @@ export default class Tapes
         {
             this.currentDisplay[i].style.backgroundColor = "";
         }
+
+        if (this.currentDisplay[this.currentTape] == undefined)
+            this.currentTape = 0;
+        
         this.currentDisplay[this.currentTape].style.backgroundColor = "black";
 
         for (let i = 0; i < this.index.children.length; i++)

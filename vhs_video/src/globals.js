@@ -44,10 +44,12 @@ export function getVideoTitle()
     if (!stateMachine.check(TapeState.Finale))
     {
         let title = video.video.firstElementChild.outerHTML;
+        //<source src="../tapes//file1/an_idea.mp4" type="video/mp4">
         title = title.substring(title.indexOf("src="), title.indexOf("type="))
         title = title.slice(title.indexOf('"') + 1, title.lastIndexOf('"'));
         title = title.slice(title.lastIndexOf("/") + 1, title.length);
         title = title.slice(0, title.lastIndexOf("."))
+        // becomes "an_idea"
         return title;
     }
     else

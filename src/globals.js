@@ -8,16 +8,17 @@ export function randomNumber(min, max)
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export function fadeToBlack(newLocation)
+export function fade(type, color, time, newLocation = null)
 {
-    document.getElementsByTagName('head')[0].getElementsByTagName('style')[0].innerHTML += 
-    '\
-    @keyframes fadeBlack {\
-        0% { opacity: 0; }\
-        100% { opacity: 1; }\
-    }';
+    let style = document.getElementsByTagName('head')[0].getElementsByTagName('style')[0];
+    let oldStyle = style.innerHTML;
+    style.innerHTML += 
+    `\
+    @keyframes fade {\
+        0% { opacity: ${type == "out" ? "0" : "1"}; }\
+        100% { opacity: ${type == "out" ? "1" : "0"}; }\
+    }`;
 
-    console.log(document.getElementsByTagName('head')[0].getElementsByTagName('style')[0])
     let bar = document.createElement("div");
     bar.id = "bar";
     bar.style.position = "fixed";
@@ -25,16 +26,19 @@ export function fadeToBlack(newLocation)
     bar.style.left = 0;
     bar.style.height = "100%";
     bar.style.width = "100%";
-    bar.style.opacity = 0;
-    bar.style.backgroundColor = "black";
+    bar.style.zIndex = 1;
+    bar.style.opacity = type == "out" ? 0 : 1;
+    bar.style.backgroundColor = color;
     body.appendChild(bar);
-    bar.style.animation = "fadeBlack 2s linear";
+    bar.style.animation = `fade ${time}s linear`;
 
     bar = document.getElementById("bar");
-    bar.style.opacity = 1;
+    bar.style.opacity = type == "out" ? 1 : 0;
     bar.addEventListener("animationend", () => 
     {
-        document.location.href = newLocation;
+        style.innerHTML = oldStyle;
+        if (newLocation != null)
+            document.location.href = newLocation;
     })
 }
 
