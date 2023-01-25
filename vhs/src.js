@@ -3,7 +3,12 @@ import TapeState from "../src/enums/TapeState.js";
 import { min_end, sounds, stateMachine, fade } from "../src/globals.js";
 import { changeInstructions, instructions_state } from "../src/main.js";
 import Command from "../src/enums/Command.js";
+import Dialogue from "../src/Dialogue.js";
 
+setTimeout(() => 
+{
+    new Dialogue("Press X to show the instructions", "fade");
+}, 5000)
 let tv = document.getElementById("tv");
 let tv_state;
 
