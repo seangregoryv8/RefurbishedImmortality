@@ -4,7 +4,7 @@ export default class Dialogue
 {
     timer = ms => new Promise(res => setTimeout(res, ms));
 
-    constructor(text, type)
+    constructor(text, type, color, length = null)
     {
         this.text = text;
         this.type = type;
@@ -15,14 +15,14 @@ export default class Dialogue
 
         console.log(text.split(""))
 
-        this.create();
+        this.create(color, length);
     }
-    create()
+    create(color, length)
     {
         this.speech.style.textDecoration = "none";
         this.speech.style.fontSize = "48px";
         this.speech.style.fontFamily = "Vhs";
-        this.speech.style.color = "white";
+        this.speech.style.color = color;
         this.speech.style.textShadow = "4px 4px black";
         this.speech.style.textAlign = "center";
         this.speech.style.position = "fixed";
@@ -53,12 +53,12 @@ export default class Dialogue
                 break;
             case "typeOut":
                 this.speech.style.opacity = 1;
-                this.typeOut();
+                this.typeOut(length);
                 break;
         }
     }
 
-    async typeOut()
+    async typeOut(length)
     {
         this.text = this.text.split("");
 
@@ -67,7 +67,7 @@ export default class Dialogue
         {
             console.log(index);
             this.speech.innerHTML += this.text[index];
-            await this.timer(100);
+            await this.timer(length);
             index++;
         }
         await this.timer(3000);
