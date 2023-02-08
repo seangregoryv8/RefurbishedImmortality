@@ -1,4 +1,9 @@
 import { fade, randomNumber } from "./src/globals.js";
+import { createBars, createOverlay, createStatic } from "./src/vhsEffect.js";
+
+createBars();
+createStatic();
+createOverlay("./resources/images/vhs_overlays/2.gif");
 
 localStorage.clear();
 let glitchAudio = new Audio(`./resources/sound/glitches/glitch${randomNumber(1, 6)}.mp3`)
