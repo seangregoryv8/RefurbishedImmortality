@@ -8,7 +8,7 @@ export function randomNumber(min, max)
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export function fade(type, color, time, newLocation = null)
+export function fade(type, color, time, newLocation = null, stay = false)
 {
     let style = document.getElementsByTagName('head')[0].getElementsByTagName('style')[0];
     let oldStyle = style.innerHTML;
@@ -37,6 +37,7 @@ export function fade(type, color, time, newLocation = null)
     bar.addEventListener("animationend", () => 
     {
         style.innerHTML = oldStyle;
+        if (!stay) bar.remove();
         if (newLocation != null)
             document.location.href = newLocation;
     })

@@ -4,7 +4,7 @@ export default class Dialogue
 {
     timer = ms => new Promise(res => setTimeout(res, ms));
 
-    constructor(text, type, color, length = null)
+    constructor(text, type, color, length = 50)
     {
         this.text = text;
         this.type = type;

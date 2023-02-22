@@ -8,8 +8,6 @@
         {
             font-size: 30px;
             text-align: center;
-            display: flex;
-            align-items: center;
         }
         a
         {
@@ -27,12 +25,14 @@
             width: 82%;
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
+            text-align: center;
         }
         #github
         {
             position: absolute;
             bottom: 30px;
             left: 10%;
+            opacity: 0;
         }
 
         #email
@@ -40,6 +40,7 @@
             position: absolute;
             bottom: 10px;
             left: 10%;
+            opacity: 0;
         }
 
         #email p, #github a
@@ -51,22 +52,9 @@
     </style>
 </head>
 <body>
+    <script type="module" src="./main.js"></script>
+    <p id="title" style="visibility: hidden; font-size: 40px;">REFURBISHED IMMORTALITY (Beta)</p>
     <p id="text_overlay">
-        This is a horror story. May contain some flashing lights and 
-        mature topics. Viewer discretion is advised...
-    </p>
-    <p id="text_overlay">
-        Refurbished Immortality: The ReAnimated Tapes
-        <br>
-        By Sean Gregory
-        <br><br>
-        For optimal immersive experience, please refrain from using the browser arrow keys or the refresh button...
-        <br><br>
-        Use keyboard arrows to navigate. Instructions can be viewed on the bottom right...
-        <br><br>
-        <br><br>
-        Press spacebar or enter to continue...
-        <br>
     </p>
     <div id="github" onclick="javascript: window.location.href = 'https://seangregoryv8.github.io';">
         <a href="https://seangregoryv8.github.io">Check out other projects on my GitHub</a>
@@ -76,6 +64,5 @@
             Let me know what you think by emailing me at seangregoryv8@gmail.com
         </p>
     </div>
-    <script type="module" src="./main.js"></script>
 </body>
 </html>

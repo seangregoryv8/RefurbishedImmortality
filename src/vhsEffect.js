@@ -78,3 +78,13 @@ export function createInstructions()
     instructions_img.draggable = false;
     body.appendChild(instructions_img);
 }
+
+export function createGlitches(count)
+{
+    for (let i = 0; i < count; i++)
+    {
+        let glitchBox = document.createElement('div')
+        glitchBox.className = 'box';
+        body.appendChild(glitchBox);
+    }
+}
