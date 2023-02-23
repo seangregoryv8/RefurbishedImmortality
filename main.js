@@ -1,8 +1,6 @@
 import { body, fade, randomNumber } from "./src/globals.js";
 import { createBars, createGlitches, createOverlay, createStatic } from "./src/vhsEffect.js";
 
-let onTitleScreen = false;
-
 localStorage.clear();
 let glitchAudio = new Audio(`./resources/sound/glitches/glitch${randomNumber(1, 6)}.mp3`)
 glitchAudio.load();
@@ -49,7 +47,6 @@ function fadeScreen(text, func)
 
 function fadeToTitleScreen(interval, func)
 {
-    onTitleScreen = true;
     if (interval != "")
         clearInterval(interval);
     fade("out", "black", 1.5)
