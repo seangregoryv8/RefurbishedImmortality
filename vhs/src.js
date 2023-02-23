@@ -3,6 +3,7 @@ import TapeState from "../src/enums/TapeState.js";
 import { min_end, sounds, stateMachine, fade } from "../src/globals.js";
 import { changeInstructions, instructions_state } from "../src/main.js";
 import Command from "../src/enums/Command.js";
+import Dialogue from "../src/Dialogue.js";
 
 let tv = document.getElementById("tv");
 let tv_state;
@@ -18,8 +19,13 @@ function changeTV(state)
     sounds.play((tv_state == Command.Off) ? SoundName.TurnOff : SoundName.TurnOn)
 }
 
+console.log(stateMachine.get());
 if (!stateMachine.check(TapeState.Choice))
 {
+    setTimeout(() => 
+    {
+        new Dialogue("Press X to show the instructions", "typeOut", "white");
+    }, 5000)
     changeInstructions(localStorage.getItem("instructions"))
     
     tv.style.animation = "zoomOut 2s ease-out";
@@ -45,10 +51,9 @@ if (!stateMachine.check(TapeState.Choice))
 }
 else
 {
+    new Dialogue("Choose...", "typeOut", "darkRed", 700);
     setTimeout(() => { sounds.play(SoundName.Drone); }, 500)
-    let p = document.getElementsByTagName('p')[0]
     let i = document.getElementById("instructions_img");
-    p.innerHTML = "Choose"
     let kill = "../resources/images/instructions-kill.png";
     let leave = "../resources/images/instructions-leave.png";
     i.src = kill;
@@ -72,7 +77,6 @@ else
                 if (i.src.includes("kill"))
                 {
                     stateMachine.set(TapeState.Kill);
-                    p.innerHTML = "KILL";
                     setTimeout(() => 
                     {
                         tv.style.animation = "zoomInLess 2.3s ease-in-out";
@@ -86,7 +90,6 @@ else
                 else
                 {
                     stateMachine.set(TapeState.Leave);
-                    p.innerHTML = "LEAVE";
                     setTimeout(() => 
                     {
                         fade("out", "black", 5, "./kill/kill.html?choice=leave");
