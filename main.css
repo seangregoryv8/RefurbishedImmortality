@@ -20,11 +20,19 @@ body
 
 p, li, a
 {
+    animation: textShadow 1.6s infinite;
     text-decoration: none;
     font-size: 48px;
     font-family: 'Vhs';
     color: white;
-    text-shadow: 4px 4px black;
+    text-shadow: 4px 4px rgba(0, 0, 0);
+}
+
+p
+{
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .box

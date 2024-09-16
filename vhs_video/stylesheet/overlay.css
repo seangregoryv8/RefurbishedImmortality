@@ -1,3 +1,7 @@
+body
+{
+    background-color: rgb(30, 58, 164);
+}
 #control
 {
     position: fixed;
