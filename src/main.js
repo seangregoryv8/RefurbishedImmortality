@@ -7,6 +7,12 @@ import
 } from "./globals.js"
 import SoundName from "./enums/SoundName.js"
 import TapeState from "./enums/TapeState.js";
+import { createBars, createInstructions, createOverlay, createStatic } from "./vhsEffect.js";
+
+createBars();
+createStatic();
+createOverlay();
+createInstructions();
 
 export let instructions_state;
 document.addEventListener('keydown', event => 
@@ -56,4 +62,6 @@ function changeInstructionsAnimation(state)
 
 instructions_state = "off";
 if (!window.location.href.includes("kill/kill.html"))
+{
     document.getElementById("instructions_img").style.bottom = -900 + 'px';
+}

@@ -7,49 +7,8 @@
 
 body
 {
-    background-color: #1e3aa4;
+    background-color: black;
     overflow: hidden;
-}
-
-#leftbar
-{
-    background-color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 9%;
-    height: 100%;
-    z-index: 1;
-}
-#rightbar
-{
-    background-color: black;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 9%;
-    height: 100%;
-    z-index: 1;
-}
-
-#vhs_overlay
-{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-}
-
-#staticNoise
-{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
 }
 
 /* VHS Font */
@@ -61,11 +20,19 @@ body
 
 p, li, a
 {
+    animation: textShadow 1.6s infinite;
     text-decoration: none;
     font-size: 48px;
     font-family: 'Vhs';
     color: white;
-    text-shadow: 4px 4px black;
+    text-shadow: 4px 4px rgba(0, 0, 0);
+}
+
+p
+{
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .box

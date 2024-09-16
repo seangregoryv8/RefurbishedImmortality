@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+body
+{
+    background-color: rgb(30, 58, 164);
+}
+
 #tapes
 {
     position: fixed;
