@@ -121,11 +121,17 @@ function clear()
     }, randomNumber(1000, 5000));
 }
 
-hide();
-setTimeout(() => 
+function start()
 {
-    fadeScreen("WARNING!<br><br>May contain some flashing lights and mature topics. Viewer discretion is advised...", titleScreen);
-}, 1500)
+    console.log("START");
+    hide();
+    setTimeout(() => 
+    {
+        fadeScreen("WARNING!<br><br>May contain some flashing lights and mature topics. Viewer discretion is advised...", titleScreen);
+    }, 1500)
+}
+
+start();
 
 
 /*
