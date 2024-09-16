@@ -59,6 +59,7 @@ function fadeToTitleScreen(interval, func)
 
 function titleScreen()
 {
+    document.getElementById("credit").style.visibility = "visible";
     document.getElementById("text_overlay").innerHTML = "REFURBISHED IMMORTALITY (Beta)";
     document.getElementById("text_overlay").style.fontSize = "48px";
     createBars();
